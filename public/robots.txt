@@ -1,0 +1,11 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Allow: /sitemap.xml
+Allow: /manifest.json
+Allow: /site.webmanifest
+Disallow: /private/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://kuldeep.space/sitemap.xml

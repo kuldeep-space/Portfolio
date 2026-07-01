@@ -1,0 +1,124 @@
+/* ==================== ABOUT SECTION (scoped) ==================== */
+#about {
+  text-align: center;
+  padding: 6rem 0
+}
+
+#about h5 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.08em;
+}
+
+#about h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 2rem;
+  position: relative;
+  color: var(--color-text);
+}
+
+#about h2::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 3px;
+  background: var(--color-primary);
+  margin: 10px auto 0;
+  border-radius: 999px;
+}
+
+#about .about__content {
+  text-align: center;
+}
+
+#about .about__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+#about .about__card {
+  background: var(--color-bg-variant);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px; /* Standardize card height */
+}
+
+#about .about__card:hover {
+  background: rgba(199, 161, 122, 0.05); /* Subtle gold tint on hover */
+  border-color: var(--color-primary);
+  transform: translateY(-6px);
+}
+
+#about .about__icon {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#about .about__card h5 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+#about .about__card small {
+  font-size: 0.9rem;
+  color: var(--color-text-alt);
+}
+
+#about .about__content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 750px;
+  margin: 0 auto 2rem;
+  color: var(--color-text-alt);
+}
+
+#about .about__cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#about .about__cta .btn {
+  min-width: 180px;
+}
+
+/* ==================== RESPONSIVE (scoped) ==================== */
+@media (max-width: 1024px) {
+  #about .about__content p { max-width: 680px; }
+}
+
+@media (max-width: 768px) {
+  #about .about__cards { gap: 1.25rem; }
+}
+
+@media (max-width: 600px) {
+  #about .about__cards { grid-template-columns: 1fr; }
+  #about .about__card { padding: 1.5rem 1rem; }
+  #about .about__content p { font-size: 1rem; }
+  #about .about__cta .btn { width: 1%; max-width: 100%; }
+}
+
+@media (max-width: 360px) {
+  #about h2 { font-size: 1.8rem; }
+  #about .about__cards { gap: 0.875rem; }
+  #about .about__icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+  #about .about__card h5 { font-size: 1rem; }
+  #about .about__card small { font-size: 0.8rem; }
+  #about .about__content p { font-size: 0.95rem; line-height: 1.65; }
+}

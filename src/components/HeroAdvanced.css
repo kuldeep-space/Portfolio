@@ -1,0 +1,233 @@
+.hero-section-advanced {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent;
+  color: var(--color-text);
+}
+
+.hero-content-advanced {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.hero-left {
+  text-align: left;
+  max-width: 680px;
+}
+
+.hero-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-title-advanced {
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.025em;
+}
+
+.hero-title-advanced .highlight {
+  color: var(--color-primary);
+}
+
+.hero-subtitle-advanced {
+  font-size: 1.35rem;
+  margin-bottom: 2.5rem;
+  max-width: 640px;
+  font-weight: 300;
+  color: var(--color-text-alt);
+  line-height: 1.7;
+}
+
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-start;
+  color: var(--color-text-alt);
+  margin: 0.5rem 0 1.75rem;
+  font-size: 0.95rem;
+}
+
+.hero-meta .meta-item {
+  color: var(--color-text-alt);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.hero-meta .meta-icon {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  transition: transform 200ms ease;
+}
+
+.hero-meta a.meta-item:hover {
+  color: var(--color-primary);
+}
+
+.hero-meta a.meta-item:hover .meta-icon {
+  transform: scale(1.08);
+}
+
+.hero-meta .meta-sep {
+  opacity: 0.5;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero-cta .btn {
+  font-size: 1rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 15px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.hero-cta .btn:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(199, 161, 122, 0.1);
+}
+
+.cta-icon {
+  margin-left: 0.5rem;
+  transition: transform 200ms ease;
+}
+
+.btn:hover .cta-icon,
+.btn:focus-visible .cta-icon {
+  color: var(--color-bg);
+  transform: translateX(4px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.hero-right {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image-container {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--color-border), 0 0 80px -5px rgba(201, 208, 247, 0.15);
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--color-bg-variant);
+}
+
+
+@media (max-width: 992px) {
+  .hero-content-advanced {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+    justify-items: center;
+  }
+  .hero-section-advanced {
+    align-items: center;
+    padding-top: 1rem;
+  }
+  .hero-left {
+    order: 2;
+    text-align: center;
+    max-width: 680px;
+  }
+  .hero-right {
+    order: 1;
+    justify-self: center;
+  }
+  .hero-subtitle-advanced {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-cta {
+    justify-content: center;
+  }
+  .hero-meta {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .profile-image-container {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    transform: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section-advanced {
+    padding-top: 2rem;
+    padding-bottom: 0;
+  }
+  .hero-title-advanced {
+    font-size: 2.2rem;
+  }
+  .hero-subtitle-advanced {
+    font-size: 1.1rem;
+  }
+  .profile-image-container {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    transform: none;
+  }
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+}

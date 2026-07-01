@@ -1,0 +1,97 @@
+/* ==================== SKILLS (EXPERIENCE) ==================== */
+
+#skills {
+    padding: 15rem 0;
+    scroll-margin-top: 80px;
+    position: relative;
+    isolation: isolate;
+  }
+  
+  #skills h2 {
+    text-align: center;
+    font-size: clamp(2.4rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    margin: 0 0 1.25rem;
+    color: var(--color-text);
+  }
+  
+  #skills h2::after {
+    content: '';
+    display: block;
+    width: 64px;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: 999px;
+    margin: 10px auto 0;
+  }
+  
+  /* Container grid */
+  .experience__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Skill cards */
+  .experience__frontend,
+  .experience__backend,
+  .experience__tools {
+    background: var(--color-bg-variant);
+    padding: 2.4rem 2rem;
+    border-radius: 2rem;
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .experience__frontend:hover,
+  .experience__backend:hover,
+  .experience__tools:hover {
+    background: rgba(199, 161, 122, 0.05); /* Subtle gold tint on hover */
+    border-color: var(--color-primary);
+    transform: translateY(-5px);
+  }
+  
+  /* Category heading */
+  .experience__container h3 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-align: left;
+  }
+  
+  /* Skills grid inside each card */
+  .experience__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1rem;
+    text-align: left;
+    flex: 1;
+    align-content: start;
+  }
+  
+  /* Each skill item */
+  .experience__details {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.125rem 0;
+  }
+  
+  .experience__details::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--color-primary);
+  }
+  
+  .experience__details h4 {
+    color: var(--color-text);
+    font-weight: 500;
+    text-align: left;
+  }
+  

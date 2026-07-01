@@ -1,0 +1,515 @@
+/* ==================== BASE STYLES & MOBILE FIRST ==================== */
+
+.leetcode-explorer,
+.cf-container { /* Combined selectors for shared styles */
+    padding: 1.5rem 1rem;
+    font-family: var(--font-body);
+    min-height: 100vh;
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.explorer-header,
+.cf-header { /* Combined selectors for shared styles */
+    text-align: center;
+    font-size: 2rem;
+    color: wheat;
+    font-weight: 600;
+}
+
+/* ==================== CHARTS & WIDGETS ==================== */
+.chart-container {
+    width: 95%; /* Fluid width for all screens, making it responsive */
+    max-width: 800px; /* Constrain on large screens */
+    /* Reverting to a responsive height that maintains aspect ratio */
+    aspect-ratio: 16 / 9;
+    min-height: 250px; /* Added minimum height to prevent it from getting too small */
+    padding: 1rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+    transition: var(--transition);
+    overflow: hidden; /* This prevents content from spilling out of the container */
+    position: relative;
+}
+
+.chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.chart-title {
+    text-align: center;
+    margin-bottom: 0.75rem;
+    color: var(--color-primary-variant);
+    font-size: 1.25rem;
+}
+
+/* ==================== CONTROLS & SEARCH INPUT ==================== */
+.controls-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This centers the search input and pagination */
+    width: 100%;
+    max-width: 800px; /* Constrain on large screens */
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    gap: 1rem;
+}
+
+.search-input,
+.cf-search-input { /* Combined search input styles */
+    padding: 12px 20px;
+    border-radius: 0.75rem;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+                linear-gradient(145deg, var(--color-primary-variant), var(--color-primary)) border-box;
+    color: var(--color-white);
+    font-size: 1rem;
+    transition: var(--transition);
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Additional styles from cf-search-input */
+    max-width: 600px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-primary-variant);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.search-input:focus,
+.cf-search-input:focus { /* Combined focus styles */
+    outline: none;
+    box-shadow: 0 0 20px rgba(71, 72, 138, 0.5);
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+}
+
+.folder-pagination,
+.cf-pagination { /* Combined pagination styles */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.list-container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.folder-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.folder-item:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-color: var(--color-primary);
+}
+
+.folder-header {
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.folder-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.expand-icon {
+    font-weight: bold;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+}
+
+.folder-item.expanded .expand-icon {
+    transform: rotate(90deg);
+}
+
+.folder-id {
+    font-weight: 600;
+    color: var(--color-primary-variant);
+    font-size: 0.9rem;
+}
+
+.files-container {
+    padding: 0 1rem 0.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-item {
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-item:hover {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-variant));
+    color: var(--color-white);
+    transform: translateX(5px) scale(1.02);
+    box-shadow: 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.language-tag {
+    font-size: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.file-item:hover .language-tag {
+    background: var(--color-bg);
+    color: var(--color-white);
+}
+
+.message {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: var(--color-light);
+}
+
+/* ==================== CODEFORCES TABLE STYLES ==================== */
+.cf-table-container {
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+    overflow-x: auto; /* Ensures table is scrollable on small screens */
+}
+
+.cf-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cf-table-container th,
+.cf-table-container td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cf-table-container th {
+    color: var(--color-primary);
+}
+
+.cf-table-container tbody tr {
+    transition: var(--transition);
+}
+
+.cf-table-container tbody tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.cf-pagination button {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.cf-pagination button:disabled {
+    background: var(--color-bg-variant);
+    cursor: not-allowed;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.modal-bg,
+.cf-modal-bg { /* Combined modal background styles */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content,
+.cf-modal-content { /* Combined modal content styles */
+    background: rgba(25, 26, 30, 0.9);
+    color: var(--color-white);
+    width: 95vw;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: auto;
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -1;
+    margin: -2px;
+    border-radius: inherit;
+    background: linear-gradient(145deg, var(--color-primary), var(--color-primary-variant));
+}
+
+.modal-header,
+.cf-modal-header { /* Combined modal header styles */
+    display: flex;
+    flex-direction: row; /* Changed to row to allow side-by-side elements */
+    align-items: center;
+    justify-content: space-between; /* Pushes the title and buttons to opposite ends */
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-header h2,
+.cf-modal-header h2 {
+    color: white;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.modal-controls,
+.cf-modal-header div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.modal-controls .btn {
+    margin-left: 0;
+}
+
+.page-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--color-primary-variant);
+    background: transparent;
+    color: var(--color-primary-variant);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: var(--color-primary-variant);
+    color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.page-btn:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+    cursor: not-allowed;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.page-info {
+    font-weight: 600;
+    color: var(--color-light);
+    padding: 0 0.5rem;
+}
+
+/* ==================== CODE BLOCK STYLES ==================== */
+.code-container,
+.cf-code-container { /* Combined code container styles */
+    flex-grow: 1;
+    overflow: auto;
+    border-radius: 8px;
+    background: #000; /* Distinct background for code */
+    margin-top: 1rem;
+    align-self: stretch; /* Fix for centering issue */
+}
+
+.code-container pre,
+.cf-code-container pre { /* Combined pre styles */
+    flex-grow: 1; /* Allow pre to grow within its container */
+    margin: 0 !important;
+    background: transparent !important;
+    overflow: auto !important;
+    padding: 1.5rem; /* Increased padding for better readability */
+    font-family: monospace; /* Use a monospace font for code */
+    text-align: left; /* Fix for code lines centering issue */
+}
+
+/* Adding scrollbar styles from the second block for consistency */
+.cf-code-container pre::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.cf-code-container pre::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.cf-code-container pre::-webkit-scrollbar-thumb {
+    background: var(--color-primary-variant);
+    border-radius: 4px;
+}
+
+.cf-code-container pre::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+
+/* ==================== MODAL BUTTONS ==================== */
+.modal-button-group {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.modal-close-btn, .modal-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 50%; /* Makes buttons circular */
+    background-color: transparent;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-shadow: 0 0 5px var(--color-primary-variant);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close-btn:hover, .modal-copy-btn:hover {
+    background-color: var(--color-primary-variant);
+    color: var(--color-white);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(165, 148, 249, 0.7);
+}
+
+/* ==================== MEDIA QUERIES FOR LARGER SCREENS ==================== */
+/* Tablet (768px and up) */
+@media screen and (min-width: 768px) {
+    .leetcode-explorer,
+    .cf-container {
+        padding: 40px 20px;
+        gap: 2rem;
+    }
+
+    .explorer-header,
+    .cf-header {
+        font-size: 2.5rem;
+    }
+
+    .chart-container {
+        height: auto;
+    }
+
+    .chart-title {
+        font-size: 1.5rem;
+    }
+    
+    .controls-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .search-input {
+        width: 400px;
+    }
+
+    .list-container {
+        gap: 1rem;
+    }
+
+    .folder-item:hover {
+        transform: translateY(-8px) scale(1.03);
+    }
+    
+    .folder-header {
+        padding: 1rem 1.5rem;
+    }
+
+    .file-item:hover {
+        transform: translateX(10px) scale(1.05);
+    }
+
+    .language-tag {
+        font-size: 12px;
+    }
+
+    .modal-content,
+    .cf-modal-content {
+        padding: 25px;
+        width: 90vw;
+    }
+
+    .modal-header,
+    .cf-modal-header {
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .modal-controls {
+        gap: 10px;
+    }
+
+    .cf-table-container {
+        padding: 1rem;
+    }
+    
+    .cf-table-container th,
+    .cf-table-container td {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+}
+
+/* Large Desktop (1024px and up) */
+@media screen and (min-width: 1024px) {
+    .leetcode-explorer,
+    .cf-container {
+        max-width: 1200px;
+        margin: auto;
+    }
+}
