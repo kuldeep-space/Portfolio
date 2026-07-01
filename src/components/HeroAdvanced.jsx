@@ -67,11 +67,11 @@ const HeroAdvanced = () => {
 
             <a
               className="meta-item icon-only"
-              href="https://github.com/kuldeep-creates"
+              href="https://github.comhttps://github.com/kuldeep-space"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              title="github.com/kuldeep-creates"
+              title="github.com/kuldeep-space"
             >
               <FiGithub className="meta-icon" /> KULDEEP-CREATES
             </a>
