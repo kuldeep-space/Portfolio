@@ -1,53 +1,78 @@
-import React from 'react';
-import './SkillsSection.css';
-import { FiCode, FiDatabase, FiTool } from 'react-icons/fi';
+import React from "react";
+import "./SkillsSection.css";
+import { FiCode, FiCpu, FiLayers, FiTool } from "react-icons/fi";
 
-const skillsData = {
-  Language: ['C++', 'Python', 'C', 'React'],
-  Extra: ['DSA', 'HTML', 'MySQL', 'DS'],
-  Tools: ['Git & GitHub', 'OpenCV', 'Linux', 'VS Code'],
-};
+const skillsData = [
+  {
+    category: "Programming",
+    icon: <FiCode />,
+    skills: ["Python", "C++", "C", "SQL", "JavaScript"],
+  },
+  {
+    category: "AI, Data & APIs",
+    icon: <FiCpu />,
+    skills: [
+      "OpenCV",
+      "NumPy",
+      "Pandas",
+      "Data Analytics",
+      "Scikit-learn",
+      "LLM APIs",
+      "REST APIs",
+    ],
+  },
+  {
+    category: "Computer Science",
+    icon: <FiLayers />,
+    skills: [
+      "DSA",
+      "OOP",
+      "Algorithm Optimization",
+      "Analytical Problem Solving",
+    ],
+  },
+  {
+    category: "Web & Tools",
+    icon: <FiTool />,
+    skills: [
+      "React.js",
+      "HTML5 & CSS3",
+      "Firebase",
+      "Git & GitHub",
+      "Linux",
+      "VS Code",
+      "Jupyter Notebook",
+    ],
+  },
+];
 
 const SkillsSection = () => {
   return (
     <section id="skills">
-      <div className="container">
-        <h2>MY SKILLS</h2>
+      <div className="skills-inner">
+
+        <div className="skills-header reveal">
+          <h2>Skills</h2>
+          <span className="skills-header-italic">stack.</span>
+        </div>
 
         <div className="experience__container">
-          <div className="experience__frontend">
-            <h3><FiCode /> LANGUAGE</h3>
-            <div className="experience__content">
-              {skillsData.Language.map((skill, index) => (
-                <article key={index} className="experience__details">
-                  <h4>{skill}</h4>
-                </article>
-              ))}
+          {skillsData.map((group, gIdx) => (
+            <div key={gIdx} className="experience__col reveal">
+              <h3>
+                {group.icon} {group.category}
+              </h3>
+              <div className="experience__content">
+                {group.skills.map((skill, index) => (
+                  <article key={index} className="experience__details">
+                    <h4>{skill}</h4>
+                  </article>
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div className="experience__backend">
-            <h3><FiDatabase /> EXTRA</h3>
-            <div className="experience__content">
-              {skillsData.Extra.map((skill, index) => (
-                <article key={index} className="experience__details">
-                  <h4>{skill}</h4>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="experience__tools">
-            <h3><FiTool /> TOOLS</h3>
-            <div className="experience__content">
-              {skillsData.Tools.map((skill, index) => (
-                <article key={index} className="experience__details">
-                  <h4>{skill}</h4>
-                </article>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
+
       </div>
     </section>
   );

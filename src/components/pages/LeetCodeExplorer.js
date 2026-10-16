@@ -19,6 +19,7 @@ import c from 'react-syntax-highlighter/dist/esm/languages/prism/c';
 import csharp from 'react-syntax-highlighter/dist/esm/languages/prism/csharp';
 import Preloader from "../Preloader";
 import "./LeetCodeExplorer.css";
+import "./LeetCodeThemeOverride.css";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 SyntaxHighlighter.registerLanguage('cpp', cpp);

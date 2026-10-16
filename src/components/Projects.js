@@ -1,89 +1,112 @@
-import React from 'react';
-import './Projects.css';
-import attendenceSystem from '../assets/Attandence.jpeg';
-import peerPlaces from '../assets/PeerPlaces.png';
-import textify from '../assets/Textify.jpeg';
-import ticTacToe from '../assets/tic_tac_toe.png';
-import textedge from '../assets/Testedge.png';
+import React from "react";
+import "./Projects.css";
+import { FiExternalLink, FiGithub } from "react-icons/fi";
+import attendenceSystem from "../assets/Attandence.jpeg";
+import peerPlaces from "../assets/PeerPlaces.png";
+import textify from "../assets/Textify.jpeg";
+import ticTacToe from "../assets/tic_tac_toe.png";
+import textedge from "../assets/Testedge.png";
 
 const data = [
   {
     id: 1,
-    title: 'Attendence System',
-    description: 'A smart system to efficiently track and manage attendance of students or employees.',
+    title: "Face-Detection Attendance System",
+    description:
+      "Real-time computer-vision application for face detection and identity recognition with automated camera-based attendance logging.",
+    tech: "Python • OpenCV",
     image: attendenceSystem,
-    github: 'https://github.com/kuldeep-creates/ATTENDANCE-SYSTEM'
+    github: "https://github.com/kuldeep-creates/ATTENDANCE-SYSTEM",
   },
   {
     id: 2,
-    title: 'PeerPlaces',
-    description: 'PeerPlacers is a platform to connect with peers, collaborate on projects, showcase skills, and access career opportunities.',
+    title: "EduShield AI – Student Analytics",
+    description:
+      "AI-oriented student analytics platform pitched at Hack AryaVerse hackathon to generate actionable educational insights from student metrics.",
+    tech: "Python • AI/ML • Data Analytics",
     image: peerPlaces,
-    github: 'https://github.com/kuldeep-creates/PeerPlacers'
+    github: "https://github.com/kuldeep-space",
   },
   {
     id: 3,
-    title: 'Textify',
-    image: textify,
-    description: 'Textify is a simple and efficient tool to Text case converter.',
-    github: 'https://github.com/kuldeep-creates/Textify',
-    Weblink  : 'https://textify.kuldeep.space/'    
+    title: "Python Train Search Engine",
+    description:
+      "Search and filtering engine for structured train datasets with custom criteria, optimized lookup logic, and efficient data handling.",
+    tech: "Python • Data Preprocessing",
+    image: textedge,
+    github: "https://github.com/kuldeep-space",
   },
   {
     id: 4,
-    title: 'TestEdge',
-    image: textedge,
-    description: 'A comprehensive online testing platform built with React and Firebase, featuring real-time monitoring, automated grading, and comprehensive admin controls.',
-    github: 'https://github.com/kuldeep-creates/Testify',
-    Weblink  : 'https://testedge.live/'    
-  },{
+    title: "Textify – Text Analytics Utility",
+    description:
+      "Responsive text processing utility for case conversion, formatting, and real-time document metrics (character, word, sentence & line counters).",
+    tech: "React.js • JavaScript • CSS",
+    image: textify,
+    github: "https://github.com/kuldeep-creates/Textify",
+    weblink: "https://textify.kuldeep.space/",
+  },
+  {
     id: 5,
-    title: 'Tic Tac Toe',
+    title: "PeerPlaces Career Platform",
+    description:
+      "Collaborative platform connecting students and developers to showcase portfolios, collaborate on projects, and discover career opportunities.",
+    tech: "React • Node.js • Firebase",
     image: ticTacToe,
-    description: 'A simple implementation of the classic Tic Tac Toe game.',
-    github: 'https://github.com/kuldeep-creates/TIC-TAC-TOE'
-  }
+    github: "https://github.com/kuldeep-creates/PeerPlacers",
+  },
 ];
 
 const ProjectsPage = () => {
   return (
     <main id="projects" className="projects-page">
-      <h2>MY RECENT WORK</h2>
+      <div className="projects-inner">
 
-      <div className="container portfolio__container">
-        {data.map(({ id, title, description, image, github, Weblink }) => (
-          <article key={id} className="portfolio__item">
-            <div className="portfolio__item-image">
-              <img src={image} alt={`Preview of ${title}`} />
-            </div>
+        <div className="projects-header reveal">
+          <h2>Work</h2>
+          <span className="projects-header-italic">selected.</span>
+          <span className="projects-count">0{data.length} Projects</span>
+        </div>
 
-            <div className="portfolio__item-content">
-              <h3>{title}</h3>
-              <p>{description}</p>
+        <div className="portfolio__container">
+          {data.map(({ id, title, description, tech, image, github, weblink }) => (
+            <article key={id} className="portfolio__item reveal">
+
+              <div className="portfolio__item-image">
+                <img src={image} alt={`Preview of ${title}`} />
+              </div>
+
+              <div className="portfolio__item-content">
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+
+              <div className="portfolio__item-tech">{tech}</div>
 
               <div className="portfolio__item-cta">
                 <a
                   href={github}
-                  className="btn btn-primary"
+                  className="btn btn-secondary"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  GitHub
+                  <FiGithub /> GitHub
                 </a>
-                {Weblink && (
+                {weblink && (
                   <a
-                    href={Weblink}
+                    href={weblink}
                     className="btn btn-primary"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Go To Website
+                    Live <FiExternalLink />
                   </a>
                 )}
               </div>
-            </div>
-          </article>
-        ))}
+
+            </article>
+          ))}
+        </div>
+
       </div>
     </main>
   );

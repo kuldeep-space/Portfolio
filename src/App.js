@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
+import InitialLoader from './components/InitialLoader';
 import NavigationBar from './components/NavigationBar';
 import HeroAdvanced from './components/HeroAdvanced';
 import AboutSection from './components/AboutSection';
@@ -32,7 +33,7 @@ const ScrollToSection = () => {
     const id = hash.replace('#', '');
 
     let tries = 0;
-    const maxTries = 10; // ~500ms total
+    const maxTries = 10;
     const tryScroll = () => {
       const el = document.getElementById(id);
       if (el) {
@@ -42,20 +43,60 @@ const ScrollToSection = () => {
         setTimeout(tryScroll, 50);
       }
     };
-    // Use a micro-delay to allow layout/render
     setTimeout(tryScroll, 0);
   }, [location.pathname, location.hash]);
   return null;
 };
 
+// Global scroll reveal observer for cinematic animations
+const ScrollRevealWatcher = () => {
+  const location = useLocation();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const elements = document.querySelectorAll('.reveal, .reveal-left');
+      if (!elements.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      elements.forEach((el) => observer.observe(el));
+      return () => observer.disconnect();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  return null;
+};
+
 function App() {
+  const [showIntro, setShowIntro] = React.useState(true);
+
+  useEffect(() => {
+    const handleReplay = () => setShowIntro(true);
+    window.addEventListener('replayIntro', handleReplay);
+    return () => window.removeEventListener('replayIntro', handleReplay);
+  }, []);
+
   return (
     <div className="App-container">
-            <Analytics />
+      {/* Intro Vector Canvas Landing Page with Precision Path2D Liquid Fill */}
+      {showIntro && <InitialLoader onComplete={() => setShowIntro(false)} />}
+
+      <Analytics />
       <Router>
         <div className="App">
           <NavigationBar />
           <ScrollToSection />
+          <ScrollRevealWatcher />
           <main>
             <Routes>
               <Route path="/" element={<MainLayout />} />

@@ -1,85 +1,210 @@
-.container.contact__container {
-    width: 100%;
-    max-width: 900px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+/* ==================== OWNITT-STYLE CONTACT ==================== */
+#contact {
+  background: #080808;
+  padding: 10rem 0 8rem;
+  border-top: 1px solid #2a2a2a;
 }
 
-.contact__options {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.contact-inner {
+  width: 88%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.contact__option {
-    background: var(--color-bg-variant);
-    padding: 1.5rem;
-    border-radius: 1.2rem;
-    text-align: center;
-    border: 1px solid var(--color-border);
-    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-    min-height: 180px; /* Standardize card height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* ---- Header ---- */
+.contact-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #2a2a2a;
 }
 
-.contact__option:hover {
-    background: rgba(199, 161, 122, 0.05); /* Subtle gold tint on hover */
-    border-color: var(--color-primary);
-    transform: translateY(-5px);
+#contact h2 {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2.5rem, 7vw, 6.5rem);
+  font-weight: 800;
+  color: #f5f5f0;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
 }
 
-.contact__option-icon {
-    font-size: 2rem;
-    margin-bottom: 0.8rem;
-    color: var(--color-primary);
+.contact-header-italic {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  color: #b8ff00;
+  font-weight: 400;
 }
 
-.contact__option a {
-    margin-top: 1rem;
-    display: inline-block;
-    font-size: 0.9rem;
-    color: var(--color-primary);
+/* ---- Body: 2 columns ---- */
+.contact-body {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr;
+  gap: 6rem;
+  align-items: start;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
+/* ---- LEFT: Info ---- */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
-input,
-textarea {
-    width: 100%;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    background: transparent;
-    border: 1px solid var(--color-border);
-    resize: none;
-    color: var(--color-text);
-    transition: border-color 0.3s ease;
+.contact-intro {
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.8;
+  color: rgba(245, 245, 240, 0.6);
+  font-weight: 300;
 }
 
-input:focus,
-textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
+.contact-intro em {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  color: #f5f5f0;
+  font-size: 1.1em;
 }
 
-/* ==================== MEDIA QUERIES (TABLETS) ==================== */
-@media screen and (max-width: 1024px) {
-    .container.contact__container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-/* ==================== MEDIA QUERIES (MOBILES) ==================== */
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #2a2a2a;
+  color: rgba(245, 245, 240, 0.55);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-link:first-child {
+  border-top: 1px solid #2a2a2a;
+}
+
+.contact-link svg {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  color: #b8ff00;
+  transition: transform 0.3s ease;
+}
+
+.contact-link-arrow {
+  margin-left: auto;
+  color: #2a2a2a !important;
+  transition: transform 0.3s ease, color 0.3s ease !important;
+}
+
+.contact-link:hover {
+  color: #f5f5f0;
+  padding-left: 0.5rem;
+}
+
+.contact-link:hover .contact-link-arrow {
+  color: #b8ff00 !important;
+  transform: translateX(6px);
+}
+
+.contact-link-static {
+  cursor: default;
+}
+.contact-link-static:hover {
+  padding-left: 0 !important;
+  color: rgba(245, 245, 240, 0.55) !important;
+}
+
+/* ---- RIGHT: Form ---- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-bottom: 1px solid #2a2a2a;
+  padding: 1.5rem 0 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-field:first-child {
+  border-top: 1px solid #2a2a2a;
+}
+
+.form-field:focus-within {
+  border-bottom-color: #b8ff00;
+}
+
+.form-field label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.form-field:focus-within label {
+  color: #b8ff00;
+}
+
+.form-field input,
+.form-field textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f5f5f0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  width: 100%;
+  resize: none;
+  caret-color: #b8ff00;
+  line-height: 1.7;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #383838;
+}
+
+.contact-submit {
+  margin-top: 2.5rem;
+  align-self: flex-start;
+  font-size: 0.85rem;
+  padding: 1rem 2.5rem;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media screen and (max-width: 900px) {
+  #contact { padding: 7rem 0 6rem; }
+  .contact-body {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .contact-header { flex-wrap: wrap; margin-bottom: 3.5rem; }
+}
+
 @media screen and (max-width: 600px) {
-    .container.contact__container {
-        width: var(--container-width-sm);
-    }
+  #contact { padding: 5rem 0 4rem; }
+  .contact-header { flex-direction: column; gap: 0.3rem; }
+  .contact-submit { width: 100%; justify-content: center; }
 }

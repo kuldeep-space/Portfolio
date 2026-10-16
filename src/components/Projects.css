@@ -1,98 +1,214 @@
-/* Extra space above projects to separate it from About */
-#projects {
-  --projects-top-extra: 2.5rem; /* desktop extra */
-  padding-top: calc(var(--section-vspace) + var(--projects-top-extra));
+﻿/* ==================== OWNITT-STYLE PROJECTS ==================== */
+.projects-page {
+  background: #080808;
+  padding: 10rem 0;
+  position: relative;
 }
 
-/* Container uses grid for equal heights */
+.projects-page .projects-inner {
+  width: 88%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.projects-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.projects-header h2 {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2.5rem, 7vw, 6.5rem);
+  font-weight: 800;
+  color: #f5f5f0;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.projects-header-italic {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  color: #b8ff00;
+  font-weight: 400;
+}
+
+.projects-count {
+  margin-left: auto;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #666;
+  align-self: center;
+}
+
+/* ---- PROJECT LIST (editorial rows) ---- */
 .portfolio__container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-}
-
-/* Projects section heading */
-#projects h2 {
-  text-align: center;
-  font-size: clamp(2.4rem, 5vw, 3.2rem);
-  line-height: 1.15;
-  margin: 0 0 4rem;
-  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .portfolio__item {
-  background: var(--color-bg-variant);
-  padding: 1.25rem;
-  border-radius: 2rem;
-  border: 1px solid var(--color-border);
-  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* force equal height */
+  display: grid;
+  grid-template-columns: 0.6fr 2fr 1.1fr 1.1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.2rem 1.2rem;
+  border-bottom: 1px solid #2a2a2a;
+  cursor: default;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  border-radius: 4px;
+}
+
+.portfolio__item:first-child {
+  border-top: 1px solid #2a2a2a;
 }
 
 .portfolio__item:hover {
-  border-color: var(--color-primary);
-  background: rgba(199, 161, 122, 0.05); /* Subtle gold tint on hover */
+  background: rgba(255, 255, 255, 0.025);
+  border-bottom-color: rgba(184, 255, 0, 0.3);
 }
 
-/* Image area */
+/* Thumbnail hover reveal */
 .portfolio__item-image {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 0.875rem;
+  max-width: 130px;
+  aspect-ratio: 16/10;
   overflow: hidden;
-  margin-bottom: 1rem;
-  background: var(--color-bg-variant);
+  border-radius: 6px;
+  opacity: 0.2;
+  transform: scale(0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+}
+
+.portfolio__item:hover .portfolio__item-image {
+  opacity: 1;
+  transform: scale(1.02);
+  border-color: rgba(184, 255, 0, 0.4);
 }
 
 .portfolio__item-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  filter: grayscale(40%);
+  transition: filter 0.4s ease, transform 0.5s ease;
 }
 
-/* Card content */
+.portfolio__item:hover .portfolio__item-image img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* Content */
 .portfolio__item-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .portfolio__item-content h3 {
-  margin: 1.2rem 0 0.8rem;
-  font-size: 1.5rem;
-  text-align: left;
-  color: var(--color-primary);
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: #f5f5f0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.portfolio__item:hover .portfolio__item-content h3 {
+  color: #b8ff00;
 }
 
 .portfolio__item-content p {
-  color: var(--color-text-alt);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-
-  /* Clamp and fix equal space for all cards */
-  height: 4.8em;               /* ~3 lines fixed height */
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-align: left;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.88rem;
+  color: #777;
+  line-height: 1.55;
+  font-weight: 300;
+  max-width: 520px;
+  transition: color 0.3s ease;
 }
 
-/* Buttons */
+.portfolio__item:hover .portfolio__item-content p {
+  color: rgba(245, 245, 240, 0.7);
+}
+
+/* Tags column */
+.portfolio__item-tech {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.portfolio__item:hover .portfolio__item-tech {
+  color: #b8ff00;
+}
+
+/* CTA column */
 .portfolio__item-cta {
   display: flex;
-  gap: 1rem;
-  margin-top: auto; /* push buttons to bottom */
-  align-items: center;
-  justify-content: flex-start;
+  gap: 0.7rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .portfolio__item-cta .btn {
-  min-width: 120px;
-  text-align: center;
-  border-color: var(--color-primary);
+  font-size: 0.72rem;
+  padding: 0.55rem 1.3rem;
+  letter-spacing: 0.08em;
+  gap: 0.45rem;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media screen and (max-width: 992px) {
+  .projects-page { padding: 7rem 0; }
+  .portfolio__item {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.2rem;
+    padding: 1.8rem 0;
+  }
+  .portfolio__item-image {
+    max-width: 90px;
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  .portfolio__item-tech {
+    grid-column: 2;
+    text-align: left;
+    font-size: 0.7rem;
+  }
+  .portfolio__item-cta {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .projects-page { padding: 5rem 0; }
+  .projects-header { flex-wrap: wrap; gap: 0.5rem; }
+  .projects-count { display: none; }
+  .portfolio__item {
+    grid-template-columns: 1fr;
+    padding: 1.8rem 0;
+  }
+  .portfolio__item-image { display: none; }
+  .portfolio__item-tech { grid-column: 1; }
 }

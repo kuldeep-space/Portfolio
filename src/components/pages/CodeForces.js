@@ -19,6 +19,7 @@ import c from 'react-syntax-highlighter/dist/esm/languages/hljs/c';
 import csharp from 'react-syntax-highlighter/dist/esm/languages/hljs/csharp';
 import javascript from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import './CodeForces.css';
+import './LeetCodeThemeOverride.css';
 
 SyntaxHighlighter.registerLanguage('cpp', cpp);
 SyntaxHighlighter.registerLanguage('python', python);
