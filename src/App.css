@@ -106,6 +106,30 @@ em, i {
   background: var(--c-black);
 }
 
+.App.app-portal-reveal {
+  animation: appSlowPortalReveal 1.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes appSlowPortalReveal {
+  0% {
+    opacity: 0.15;
+    transform: scale(0.96) translateY(28px);
+    filter: blur(18px);
+  }
+  45% {
+    opacity: 0.75;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+
+
 main { flex: 1; }
 .App-header { display: none; }
 
@@ -222,7 +246,7 @@ main { flex: 1; }
   transform: translateX(0);
 }
 
-/* Stagger utility — add delay via --delay CSS var */
+/* Stagger utility ï¿½ add delay via --delay CSS var */
 .reveal[style], .reveal-left[style] {
   transition-delay: var(--delay, 0s);
 }

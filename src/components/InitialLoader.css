@@ -1,7 +1,7 @@
 /* ============================================================
    KULDEEP JANGID — PURE PITCH-BLACK OBSIDIAN INTRO
    Exact 2-Line Spline Liquid Fill • DATA SCIENTIST
-   100% Mobile Responsive • Dynamic Viewport (dvh) • Touch Optimized
+   Cinematic Motion Blur • 3D Spatial Warp • Anamorphic Horizon Flare
    ============================================================ */
 
 .intro-stage-container {
@@ -17,16 +17,53 @@
   overflow: hidden;
   user-select: none;
   cursor: pointer;
-  transition: transform 0.85s cubic-bezier(0.83, 0, 0.17, 1);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   touch-action: pan-y;
+  will-change: transform, opacity;
+  transition: opacity 1.75s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 1.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.intro-stage-container.intro-curtain-up {
-  transform: translateY(-100%);
+/* ==================== CINEMATIC SLOW-MOTION EXIT WARP & MOTION BLUR ==================== */
+/* Container stays locked on screen during slow motion, smoothly dissolving with an elegant upward drift */
+.intro-stage-container.intro-cinematic-exit {
+  opacity: 0;
+  transform: scale(1.04) translateY(-32px);
   pointer-events: none;
+}
+
+/* 3D Forward Expansion + Gaussian Optical Motion Blur on Canvas Typography */
+.intro-stage-container.intro-cinematic-exit .intro-stage-canvas {
+  transform: scale(1.36) translateY(-24px);
+  filter: blur(32px);
+  opacity: 0;
+  transition: transform 1.75s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.7s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 1.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Depth Separation Blur & Typographic Dispersal on DATA SCIENTIST Subtitle */
+.intro-stage-container.intro-cinematic-exit .intro-subtitle-box {
+  transform: translate(-50%, 38px) scale(0.9);
+  filter: blur(16px);
+  opacity: 0;
+  letter-spacing: clamp(0.55em, 2.2vw, 0.85em);
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+              letter-spacing 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.4s ease-out,
+              opacity 1.35s ease-out;
+}
+
+/* Gravitational Pull-Away Blur on Scroll Indicator */
+.intro-stage-container.intro-cinematic-exit .intro-scroll-indicator {
+  transform: translate(-50%, 40px) scale(0.82);
+  filter: blur(10px);
+  opacity: 0;
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.05s ease-in,
+              opacity 0.95s ease-in;
 }
 
 /* ==================== FULLSCREEN CANVAS ==================== */
@@ -40,6 +77,8 @@
   display: block;
   z-index: 1;
   background: #000000 !important;
+  will-change: transform, filter, opacity;
+  transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
 }
 
 /* ==================== 100% OPTICALLY CENTERED SUBTITLE ==================== */
@@ -59,6 +98,7 @@
   opacity: 0;
   animation: fadeInSubtitle 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
   box-sizing: border-box;
+  will-change: transform, filter, opacity;
 }
 
 .intro-role-title {
@@ -107,6 +147,7 @@
   border-radius: 999px;
   -webkit-tap-highlight-color: transparent;
   transition: opacity 0.25s ease, transform 0.25s ease;
+  will-change: transform, filter, opacity;
 }
 
 .intro-scroll-indicator:hover {

@@ -148,7 +148,7 @@ function drawSplineLiquidLayer(ctx, glyphW, fillT, worldOffsetX, time, opts) {
   ctx.fill();
 }
 
-const InitialLoader = ({ onComplete }) => {
+const InitialLoader = ({ onComplete, onExitStart }) => {
   const [isExiting, setIsExiting] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [subtitleY, setSubtitleY] = useState(() => {
@@ -211,17 +211,19 @@ const InitialLoader = ({ onComplete }) => {
     };
   }, [compiledGlyphs]);
 
-  // Transition into portfolio - called on scroll / swipe / tap
+  // Transition into portfolio with SLOW-MOTION cinematic blur, scale & flare
   const triggerEnter = useCallback(() => {
     if (isExiting || isDone) return;
     setIsExiting(true);
+    if (onExitStart) onExitStart();
 
+    // Luxurious 1750ms slow-motion exit duration for clean, clearly visible transition
     setTimeout(() => {
       setIsDone(true);
       document.body.style.overflow = "";
       if (onComplete) onComplete();
-    }, 850);
-  }, [isExiting, isDone, onComplete]);
+    }, 1750);
+  }, [isExiting, isDone, onExitStart, onComplete]);
 
   // Lock body scroll during intro
   useEffect(() => {
@@ -253,7 +255,6 @@ const InitialLoader = ({ onComplete }) => {
     const onTouchMove = (e) => {
       if (touchStartY.current !== null && e.touches && e.touches.length > 0) {
         const diff = touchStartY.current - e.touches[0].clientY;
-        // User swiped (swipe up diff > 18, or pull down diff < -22)
         if (Math.abs(diff) > 18) {
           triggerEnter();
         }
@@ -281,7 +282,7 @@ const InitialLoader = ({ onComplete }) => {
     };
   }, [triggerEnter, isDone, isExiting]);
 
-  // Canvas Render Loop with True Golden Ratio Mobile & Desktop Positioning
+  // Canvas Render Loop with Golden Ratio Mobile & Desktop Positioning
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !compiledGlyphs || !compiledGlyphs.compiled) return;
@@ -304,7 +305,6 @@ const InitialLoader = ({ onComplete }) => {
       const isMobile = width < 600;
       const isSmallMobile = width < 380 || height < 680;
 
-      // Clean horizontal margins
       const maxLineWidth = width * (isSmallMobile ? 0.92 : isMobile ? 0.88 : 0.84);
       const letterGap = isSmallMobile ? 8 : isMobile ? 11 : 16;
 
@@ -316,7 +316,6 @@ const InitialLoader = ({ onComplete }) => {
         if (units > maxLineUnits) maxLineUnits = units;
       });
 
-      // Height allocation: allows bold presence on mobile without overflowing
       const maxAllowedHeight = isMobile ? height * 0.36 : height * 0.48;
       const scale = Math.max(
         0.24,
@@ -329,11 +328,7 @@ const InitialLoader = ({ onComplete }) => {
       const subtitleGap = Math.max(isMobile ? 14 : 22, glyphH * 0.25);
       const subtitleH = isMobile ? 22 : 28;
 
-      // Group composition: KULDEEP + JANGID + DATA SCIENTIST
       const totalCompositionH = totalBlockHeight + subtitleGap + subtitleH;
-
-      // True optical center:
-      // Place the composition center at 44% of screen height on mobile, 46% on desktop
       const targetCenterY = height * (isMobile ? 0.44 : 0.46);
       const startY = Math.max(isMobile ? 32 : 40, targetCenterY - totalCompositionH / 2);
       const computedSubY = startY + totalBlockHeight + subtitleGap;
@@ -350,7 +345,6 @@ const InitialLoader = ({ onComplete }) => {
       const holdProgress = clamp((elapsed - ANIM_DURATION) / 1200, 0, 1);
       const time = now * 0.0046;
 
-      // Pure pitch-black stage
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, width, height);
 
@@ -550,7 +544,6 @@ const InitialLoader = ({ onComplete }) => {
         }
       }
 
-      // Freeze rendering once finished to save 100% CPU/GPU
       if (masterProgress < 1 || holdProgress < 1) {
         animFrameRef.current = requestAnimationFrame(render);
       }
@@ -567,7 +560,7 @@ const InitialLoader = ({ onComplete }) => {
     };
   }, [compiledGlyphs]);
 
-  // Click anywhere on canvas restarts the animation (does NOT transition to next page)
+  // Click on canvas restarts animation
   const handleStageClick = () => {
     startTimeRef.current = performance.now();
     if (animFrameRef.current) {
@@ -582,7 +575,7 @@ const InitialLoader = ({ onComplete }) => {
 
   return (
     <div
-      className={`intro-stage-container ${isExiting ? "intro-curtain-up" : ""}`}
+      className={`intro-stage-container ${isExiting ? "intro-cinematic-exit" : ""}`}
       onClick={handleStageClick}
       role="button"
       tabIndex={0}

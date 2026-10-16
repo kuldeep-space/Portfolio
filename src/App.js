@@ -79,9 +79,13 @@ const ScrollRevealWatcher = () => {
 
 function App() {
   const [showIntro, setShowIntro] = React.useState(true);
+  const [introExiting, setIntroExiting] = React.useState(false);
 
   useEffect(() => {
-    const handleReplay = () => setShowIntro(true);
+    const handleReplay = () => {
+      setIntroExiting(false);
+      setShowIntro(true);
+    };
     window.addEventListener('replayIntro', handleReplay);
     return () => window.removeEventListener('replayIntro', handleReplay);
   }, []);
@@ -89,11 +93,19 @@ function App() {
   return (
     <div className="App-container">
       {/* Intro Vector Canvas Landing Page with Precision Path2D Liquid Fill */}
-      {showIntro && <InitialLoader onComplete={() => setShowIntro(false)} />}
+      {showIntro && (
+        <InitialLoader
+          onExitStart={() => setIntroExiting(true)}
+          onComplete={() => {
+            setShowIntro(false);
+            setIntroExiting(false);
+          }}
+        />
+      )}
 
       <Analytics />
       <Router>
-        <div className="App">
+        <div className={`App ${introExiting ? "app-portal-reveal" : ""}`}>
           <NavigationBar />
           <ScrollToSection />
           <ScrollRevealWatcher />
