@@ -19,7 +19,6 @@ const HeroAdvanced = () => {
         <div className="hero-content-col">
           {/* Top Kicker Row (Remains at Top) */}
           <div className="hero-kicker-row">
-            <span className="hero-status-dot" aria-hidden="true" />
             <span className="hero-kicker">KULDEEP JANGID · AI/ML &amp; PYTHON DEVELOPER</span>
           </div>
 

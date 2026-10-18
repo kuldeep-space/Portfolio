@@ -709,9 +709,9 @@ const Projects = () => {
           <main className="ownitt-main-stage">
             {/* Left Column: Overlapping Split-Line Typography */}
             <div className="project-info">
-              <div className="stack-grid" ref={metaStackRef} />
-              <div className="stack-grid" ref={titleStackRef} />
-              <div className="stack-grid" ref={descStackRef} />
+              <div className="stack-grid meta-stack" ref={metaStackRef} />
+              <div className="stack-grid title-stack" ref={titleStackRef} />
+              <div className="stack-grid desc-stack" ref={descStackRef} />
 
               {/* Action Cluster: Circular Arrow Disc CTA + Source + Tech Specs */}
               <div className="action-cluster">
