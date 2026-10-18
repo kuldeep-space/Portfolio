@@ -790,13 +790,14 @@
 
   .vertical-icon-rail {
     position: sticky;
-    top: 60px;
+    top: 64px;
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(12px);
     padding: 8px 0;
     margin: 0 -12px;
     padding-inline: 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 50;
   }
 
   .rail-track {
@@ -811,6 +812,7 @@
     align-items: center;
     text-align: center;
     gap: 8px;
+    min-height: 44px;
   }
 
   .rail-num-row {
@@ -870,20 +872,20 @@
 @media screen and (max-width: 520px) {
   .minimal-about-container {
     width: 92%;
-    gap: 44px;
+    gap: 40px;
   }
 
   .about-dossier-card {
-    padding: 22px 16px;
+    padding: 20px 14px;
   }
 
   .about-section-heading {
-    font-size: clamp(2.2rem, 10vw, 3rem);
+    font-size: clamp(2rem, 9vw, 2.6rem);
   }
 
   .dossier-metrics-grid {
     grid-template-columns: 1fr;
-    padding: 14px;
+    padding: 12px;
   }
 
   .minimal-resume-btn {
@@ -891,14 +893,39 @@
     justify-content: center;
   }
 
+  .rail-nav-btn {
+    padding: 8px 4px;
+    gap: 6px;
+  }
+
+  .rail-icon-box {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+
+  .rail-title {
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+  }
+
+  .rail-num {
+    font-size: 0.58rem;
+  }
+
   .bento-feature-card {
     grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 18px 14px;
+    gap: 14px;
+    padding: 16px 12px;
   }
 
   .feature-stat-box {
-    width: 110px;
+    width: 100%;
+    min-height: 70px;
+  }
+
+  .stat-large-num {
+    font-size: 1.8rem;
   }
 
   .stage-section-header {
@@ -909,7 +936,11 @@
     padding-top: 2px;
   }
 
-  .rail-title {
-    font-size: 0.66rem;
+  .minimal-card {
+    padding: 18px 14px;
+  }
+
+  .card-bullet {
+    font-size: 0.82rem;
   }
 }

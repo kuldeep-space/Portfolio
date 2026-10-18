@@ -337,7 +337,9 @@
               inset 0 1px 0 rgba(255, 255, 255, 0.16);
   border-radius: 20px;
   padding: 32px;
-  overflow: hidden;
+  max-height: 85vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   animation: specsDialogPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
@@ -772,14 +774,52 @@
 @media screen and (max-width: 1024px) {
   .ownitt-main-stage {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
   .pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 0 4px;
+    width: 100%;
+    order: 3;
+    z-index: 10;
+  }
+  .page-item {
+    flex-direction: row;
+    align-items: center;
+  }
+  .page-num {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #888888;
+  }
+  .page-num.active {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    font-weight: 800;
+  }
+  .page-num::after,
+  .page-line {
     display: none;
+  }
+  .media-wrapper {
+    max-width: 100%;
   }
   .media-frame {
     width: 100% !important;
-    max-width: 520px;
+    max-width: 580px;
     aspect-ratio: 16 / 10;
     height: auto !important;
   }
@@ -792,8 +832,12 @@
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
   .ownitt-slider-section {
+    height: auto;
+    min-height: 100dvh;
+    padding: calc(64px + 1rem) 0 2rem;
+    overflow: visible;
     cursor: auto;
   }
   .ownitt-slider-section .cursor-dot,
@@ -801,37 +845,134 @@
     display: none;
   }
   .ownitt-app-grid {
-    padding: 20px;
+    height: auto;
+    min-height: calc(100dvh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 4%;
+    gap: 16px;
+  }
+  .watermark-wrap {
+    display: none;
+  }
+  .project-info {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .ownitt-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 8px;
+  }
+  .case-counter {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+  .header-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+  .project-meta {
+    font-size: 0.65rem;
+    margin-bottom: 12px;
   }
   .project-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.65rem, 6.8vw, 2.2rem);
+    line-height: 1.15;
+    margin-bottom: 12px;
   }
   .project-desc-paragraph {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    max-width: 100%;
   }
-  .media-frame {
-    width: 100% !important;
-    aspect-ratio: 16 / 10;
-    height: auto !important;
+  .project-tech-chips {
+    gap: 6px;
+    margin-bottom: 18px;
   }
-  .specs-modal-dialog {
-    padding: 22px;
+  .tech-chip {
+    font-size: 0.68rem;
+    padding: 3px 8px;
   }
   .action-cluster {
-    flex-direction: column;
-    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
   }
-  .cta-link,
-  .ghost-action-btn {
+  .cta-link {
+    font-size: 0.68rem;
+    gap: 10px;
+    min-height: 44px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 4px;
+    flex: 1 1 auto;
     justify-content: center;
+  }
+  .cta-circle {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .ghost-action-btn {
+    min-height: 44px;
+    padding: 0.6rem 0.95rem;
+    font-size: 0.68rem;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .specs-modal-dialog {
+    padding: 20px 16px;
+    border-radius: 14px;
+    max-height: 85vh;
+  }
+  .specs-modal-heading {
+    font-size: 1.05rem;
+  }
+  .specs-pipeline-text {
+    font-size: 0.82rem;
+    padding: 10px 12px;
+  }
+  .specs-bullets li {
+    font-size: 0.8rem;
+  }
+  .other-projects-section {
+    padding: 4.5rem 0 3.5rem;
+  }
+  .other-title {
+    font-size: 1.65rem;
   }
   .other-row.head {
     display: none;
   }
   .other-row {
     grid-template-columns: 1fr;
-    gap: 0.4rem;
-    padding: 1.15rem 0;
+    gap: 0.45rem;
+    padding: 1.1rem 0;
+  }
+  .row-year {
+    font-size: 0.72rem;
+  }
+  .row-name {
+    font-size: 0.96rem;
+  }
+  .row-cat {
+    font-size: 0.72rem;
+  }
+  .row-link {
+    min-height: 44px;
+    align-items: center;
   }
   .row-action {
     text-align: left;

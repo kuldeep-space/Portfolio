@@ -307,14 +307,18 @@
 @media screen and (max-width: 640px) {
   .skills-container {
     width: 92%;
-    gap: 40px;
+    gap: 36px;
+  }
+
+  .skills-section-heading {
+    font-size: clamp(1.9rem, 7vw, 2.8rem);
   }
 
   .skills-radar-summary {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 14px 16px;
   }
 
   .radar-sep {
@@ -336,5 +340,12 @@
     text-align: left;
     padding-left: 18px;
     font-size: 0.78rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .skills-radar-summary {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }

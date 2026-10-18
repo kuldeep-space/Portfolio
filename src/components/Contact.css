@@ -340,21 +340,47 @@
 @media screen and (max-width: 1024px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
   .contact-form-col {
     border-left: none;
     padding-left: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.14);
-    padding-top: 2.25rem;
+    padding-top: 2rem;
   }
 }
 
 @media screen and (max-width: 640px) {
   .contact-section {
-    padding: 5rem 0 4rem;
+    padding: 4.5rem 0 3.5rem;
+  }
+  .contact-title {
+    font-size: clamp(1.9rem, 7.5vw, 2.8rem);
   }
   .channel-toggles {
     grid-template-columns: 1fr;
+  }
+  .channel-toggle-btn {
+    min-height: 44px;
+  }
+  .contact-submit-btn {
+    min-height: 48px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .endpoint-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .endpoint-actions-sub {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .sub-action-link {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
   }
 }

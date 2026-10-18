@@ -151,6 +151,7 @@ const Projects = () => {
   const headerTagWrapRef = useRef(null);
   const watermarkWrapRef = useRef(null);
   const paginationRef = useRef(null);
+  const touchStartX = useRef(null);
   const touchStartY = useRef(null);
 
   // Helper: Create Masked Lines DOM Element
@@ -584,29 +585,46 @@ const Projects = () => {
     };
   }, [openSpecs, goToSlide]);
 
-  // Touch Swipe Support for Mobile
+  // Touch Swipe Support for Mobile (Horizontal + Vertical gestures)
   const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e) => {
-    if (touchStartY.current === null || isAnimatingRef.current || openSpecs) return;
-    const diff = touchStartY.current - e.changedTouches[0].clientY;
+    if (touchStartX.current === null || touchStartY.current === null || isAnimatingRef.current || openSpecs) return;
+    const diffX = touchStartX.current - e.changedTouches[0].clientX;
+    const diffY = touchStartY.current - e.changedTouches[0].clientY;
     const timeSince = Date.now() - lastStepTimeRef.current;
 
-    if (diff > 50) {
-      if (currentIndexRef.current < slides.length - 1) {
-        goToSlide(currentIndexRef.current + 1, 1);
-      } else if (timeSince > 700) {
-        document.getElementById('other-projects')?.scrollIntoView({ behavior: 'smooth' });
+    // Horizontal swipe (left/right carousel gesture)
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+      if (diffX > 0) {
+        if (currentIndexRef.current < slides.length - 1) {
+          goToSlide(currentIndexRef.current + 1, 1);
+        }
+      } else {
+        if (currentIndexRef.current > 0) {
+          goToSlide(currentIndexRef.current - 1, -1);
+        }
       }
-    } else if (diff < -50) {
-      if (currentIndexRef.current > 0) {
-        goToSlide(currentIndexRef.current - 1, -1);
-      } else if (timeSince > 700) {
-        document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+    } else if (Math.abs(diffY) > 50) {
+      // Vertical swipe
+      if (diffY > 0) {
+        if (currentIndexRef.current < slides.length - 1) {
+          goToSlide(currentIndexRef.current + 1, 1);
+        } else if (timeSince > 700) {
+          document.getElementById('other-projects')?.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        if (currentIndexRef.current > 0) {
+          goToSlide(currentIndexRef.current - 1, -1);
+        } else if (timeSince > 700) {
+          document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     }
+    touchStartX.current = null;
     touchStartY.current = null;
   };
 

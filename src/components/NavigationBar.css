@@ -169,6 +169,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
   }
   .mobile-nav-drawer {
     display: block;
@@ -183,24 +185,25 @@
     transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .mobile-nav-drawer.is-open {
-    max-height: 380px;
+    max-height: 400px;
   }
   .mobile-drawer-links {
-    padding: 1.5rem 1.5rem;
+    padding: 1.25rem 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
   }
   .mobile-nav-link {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     letter-spacing: 0.1em;
     color: #ffffff;
     text-decoration: none;
-    padding-bottom: 0.75rem;
+    min-height: 44px;
+    padding: 0.5rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   .mobile-resume-link {
@@ -208,5 +211,14 @@
     font-weight: 700;
     border-bottom: none;
     padding-top: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .navbar-actions .navbar-resume-btn {
+    display: none;
+  }
+  .brand-wordmark {
+    font-size: 0.98rem;
   }
 }
