@@ -94,10 +94,10 @@ const educationData = [
     period: '2022',
     badge: 'COMPLETED',
     degree: 'Secondary Schooling (CBSE Class X)',
-    institution: 'The Sanctum School, Kunda, Amer, Jaipur',
+    institution: 'Kendriya Vidyalaya, Jalore',
     description:
-      'Foundational secondary education with academic distinction, developing early expertise in Computer Applications, Mathematics, Science, and logical problem-solving.',
-    coursework: ['Computer Applications', 'Mathematics', 'Science', 'Logical Reasoning'],
+      'Foundational secondary education with academic distinction, establishing strong proficiency in Mathematics, Science, Computer Applications, and logical reasoning.',
+    coursework: ['Mathematics', 'Science', 'Computer Applications', 'English'],
   },
 ];
 
