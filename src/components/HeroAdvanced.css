@@ -255,16 +255,18 @@
     z-index: 2;
   }
 
-  /* Middle Studio Portrait Backdrop on Tablet & Mobile (Shifted slightly Right) */
+  /* Studio Portrait Backdrop: Starts at navbar bottom (64px), full width touching left & right */
   .hero-bg-portrait-layer {
     display: block !important;
     position: absolute;
-    inset: 0;
     top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-image: url('../assets/kuldeep_mobile_portrait.png');
     background-repeat: no-repeat;
-    background-position: calc(50% + 65px) 25%;
-    background-size: clamp(260px, 54vh, 420px) auto;
+    background-position: center top;
+    background-size: 100% auto;
     opacity: 0.95;
     z-index: 0;
   }
@@ -274,11 +276,11 @@
     background: 
       linear-gradient(
         180deg,
-        #000000 0%,
-        rgba(0, 0, 0, 0.45) 12%,
-        transparent 28%,
-        rgba(0, 0, 0, 0.6) 52%,
-        #000000 76%,
+        rgba(0, 0, 0, 0.45) 0%,
+        transparent 16%,
+        transparent 45%,
+        rgba(0, 0, 0, 0.65) 65%,
+        #000000 85%,
         #000000 100%
       );
   }
@@ -320,28 +322,22 @@
     letter-spacing: -0.035em;
   }
 
-  /* Studio portrait cleanly framed and shifted slightly right */
+  /* Studio portrait cleanly fills top, left, and right */
   .hero-bg-portrait-layer {
-    background-position: calc(50% + 48px) 20%;
-    background-size: clamp(230px, 49vh, 350px) auto;
+    background-position: center top;
+    background-size: 100% auto;
   }
 
   .hero-bg-fade-mask {
     background: 
       linear-gradient(
         180deg,
-        #000000 0%,
-        rgba(0, 0, 0, 0.45) 10%,
-        transparent 25%,
-        rgba(0, 0, 0, 0.7) 48%,
-        #000000 70%,
+        rgba(0, 0, 0, 0.45) 0%,
+        transparent 15%,
+        transparent 45%,
+        rgba(0, 0, 0, 0.7) 65%,
+        #000000 85%,
         #000000 100%
-      ),
-      linear-gradient(
-        90deg,
-        #000000 0%,
-        rgba(0, 0, 0, 0.4) 28%,
-        transparent 65%
       );
   }
 
@@ -389,7 +385,7 @@
   }
 
   .hero-bg-portrait-layer {
-    background-position: calc(50% + 38px) 18%;
-    background-size: auto 45vh;
+    background-position: center top;
+    background-size: 100% auto;
   }
 }
