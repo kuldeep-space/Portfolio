@@ -24,12 +24,12 @@
   position: absolute;
   top: 64px;
   right: 0;
-  bottom: -55px;
+  bottom: 0;
   left: 0;
   background-image: url('../assets/kuldeep_suit.png');
   background-repeat: no-repeat;
   background-position: right bottom;
-  background-size: auto 107%;
+  background-size: auto 96%;
   pointer-events: none;
   z-index: 0;
   transition: opacity 0.3s ease;
@@ -264,7 +264,7 @@
     background-image: url('../assets/kuldeep_mobile_portrait.png');
     background-repeat: no-repeat;
     background-position: calc(50% + 65px) 25%;
-    background-size: clamp(300px, 62vh, 480px) auto;
+    background-size: clamp(260px, 54vh, 420px) auto;
     opacity: 0.95;
     z-index: 0;
   }
@@ -323,7 +323,7 @@
   /* Studio portrait cleanly framed and shifted slightly right */
   .hero-bg-portrait-layer {
     background-position: calc(50% + 48px) 20%;
-    background-size: clamp(270px, 58vh, 400px) auto;
+    background-size: clamp(230px, 49vh, 350px) auto;
   }
 
   .hero-bg-fade-mask {
@@ -390,6 +390,6 @@
 
   .hero-bg-portrait-layer {
     background-position: calc(50% + 38px) 18%;
-    background-size: auto 52vh;
+    background-size: auto 45vh;
   }
 }
