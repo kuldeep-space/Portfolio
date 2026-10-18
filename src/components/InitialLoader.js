@@ -187,7 +187,7 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
         const svgPath = document.createElementNS(svgNS, "path");
         svgPath.setAttribute("d", d);
         hiddenSvg.appendChild(svgPath);
-        const length = svgPath.getTotalLength();
+        const length = typeof svgPath.getTotalLength === "function" ? svgPath.getTotalLength() : 100;
 
         return { p2d, svgPath, length };
       });
@@ -211,25 +211,31 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
     };
   }, [compiledGlyphs]);
 
-  // Transition into portfolio with SLOW-MOTION cinematic blur, scale & flare
+  // Transition into portfolio with SLOW-MOTION cinematic blur & scale
+  // Transition into portfolio with smooth cinematic blur & scale
   const triggerEnter = useCallback(() => {
     if (isExiting || isDone) return;
     setIsExiting(true);
     if (onExitStart) onExitStart();
 
-    // Luxurious 1750ms slow-motion exit duration for clean, clearly visible transition
+    // Immediately restore page scroll so Hero section never gets stuck
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+
     setTimeout(() => {
       setIsDone(true);
-      document.body.style.overflow = "";
       if (onComplete) onComplete();
-    }, 1750);
+    }, 550);
   }, [isExiting, isDone, onExitStart, onComplete]);
 
-  // Lock body scroll during intro
+  // Lock body scroll strictly during active intro presentation
   useEffect(() => {
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, []);
 
@@ -242,6 +248,7 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
     const onWheel = (e) => {
       accumulatedScroll += e.deltaY;
       if (accumulatedScroll > 18 || Math.abs(e.deltaY) > 14) {
+        if (e.cancelable) e.preventDefault();
         triggerEnter();
       }
     };
@@ -253,24 +260,26 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
     };
 
     const onTouchMove = (e) => {
+      // Unconditionally prevent mobile touch scrolling while on intro
+      if (e.cancelable) e.preventDefault();
       if (touchStartY.current !== null && e.touches && e.touches.length > 0) {
         const diff = touchStartY.current - e.touches[0].clientY;
-        if (Math.abs(diff) > 18) {
+        if (Math.abs(diff) > 12) {
           triggerEnter();
         }
       }
     };
 
     const onKeyDown = (e) => {
-      if (["ArrowDown", "PageDown", " ", "Enter"].includes(e.key)) {
+      if (["ArrowDown", "PageDown", " ", "Enter", "Escape"].includes(e.key)) {
         e.preventDefault();
         triggerEnter();
       }
     };
 
-    window.addEventListener("wheel", onWheel, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
@@ -278,7 +287,6 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
     };
   }, [triggerEnter, isDone, isExiting]);
 
@@ -288,6 +296,7 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
     if (!canvas || !compiledGlyphs || !compiledGlyphs.compiled) return;
 
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
     const COMPILED_GLYPHS = compiledGlyphs.compiled;
 
     let width = window.innerWidth;
@@ -517,7 +526,7 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
                 ctx.stroke(contour.p2d);
                 ctx.restore();
 
-                const tip = contour.svgPath.getPointAtLength(len * strokeT);
+                const tip = typeof contour.svgPath.getPointAtLength === "function" ? contour.svgPath.getPointAtLength(len * strokeT) : { x: 0, y: 0 };
                 ctx.save();
                 ctx.fillStyle = "#ffffff";
                 ctx.shadowColor = "#ffffff";
@@ -584,14 +593,14 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
       {/* Main Fullscreen Stage Canvas */}
       <canvas ref={canvasRef} id="stage" className="intro-stage-canvas" />
 
-      {/* 100% Optically Centered Subtitle: DATA SCIENTIST */}
+      {/* 100% Optically Centered Subtitle */}
       <div
         className="intro-subtitle-box"
         style={{
           top: subtitleY ? `${subtitleY}px` : "calc(50% + 80px)",
         }}
       >
-        <h2 className="intro-role-title">DATA SCIENTIST</h2>
+        <h2 className="intro-role-title">AI/ML &amp; PYTHON DEVELOPER</h2>
       </div>
 
       {/* 100% Transparent Luxury Scroll Down Indicator (tap or scroll to enter) */}

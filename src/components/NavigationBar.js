@@ -1,123 +1,130 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './NavigationBar.css';
-import { AiOutlineHome, AiOutlineUser, AiOutlineCode } from 'react-icons/ai';
-import { BiBook, BiMessageSquareDetail } from 'react-icons/bi';
-import { RiServiceLine } from 'react-icons/ri';
+import { FiArrowUpRight, FiFileText, FiMenu, FiX } from 'react-icons/fi';
+import resumePdf from '../assets/KULDEEP_CV.pdf';
+
+const navLinks = [
+  { label: 'ABOUT', href: '#about' },
+  { label: 'PROJECTS', href: '#projects' },
+  { label: 'SKILLS', href: '#skills' },
+  { label: 'CONTACT', href: '#contact' },
+];
 
 const NavigationBar = () => {
-  const location = useLocation();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isInProjects, setIsInProjects] = useState(false);
 
-  // Close dropdown if clicked outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
+    const handleScroll = () => {
+      setIsScrolled(window.pageYOffset > 40);
+
+      const projectsEl = document.getElementById('projects');
+      if (projectsEl) {
+        const rect = projectsEl.getBoundingClientRect();
+        // Hide navbar while viewing the full-page projects shutter stage
+        const inProjects = rect.top <= 60 && rect.bottom >= 80;
+        setIsInProjects(inProjects);
+        if (inProjects) {
+          setMobileMenuOpen(false);
+        }
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  
-  // Track active section (home, about, projects, skills, contact)
-  const [activeSection, setActiveSection] = useState('home');
-
-  // Sync active section with current location hash when navigating
-  useEffect(() => {
-    if (location.pathname !== '/') return;
-    const current = (location.hash || '#home').slice(1);
-    setActiveSection(current);
-  }, [location.pathname, location.hash]);
-
-  // Observe sections to update active icon on scroll
-  useEffect(() => {
-    if (location.pathname !== '/') return; // Only on the main page
-    const ids = ['home', 'about', 'projects', 'skills', 'contact'];
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    if (sections.length === 0) return;
-
-    let ticking = false;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (ticking) return;
-        ticking = true;
-        // Pick the most visible intersecting section
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) {
-          const id = visible.target.id;
-          setActiveSection(id);
-          // Update hash without pushing history entries
-          if (window.location.pathname === '/') {
-            const newHash = `#${id}`;
-            if (window.location.hash !== newHash) {
-              window.history.replaceState(null, '', `/${newHash}`);
-            }
-          }
-        }
-        requestAnimationFrame(() => (ticking = false));
-      },
-      { threshold: [0.55, 0.65, 0.75] }
-    );
-
-    sections.forEach((sec) => observer.observe(sec));
-    return () => observer.disconnect();
-  }, [location.pathname]);
-
-  const navLinks = [
-    { to: '/#home', icon: <AiOutlineHome />, section: 'home' },
-    { to: '/#about', icon: <AiOutlineUser />, section: 'about' },
-    { to: '/#projects', icon: <RiServiceLine />, section: 'projects' },
-    { to: '/#skills', icon: <BiBook />, section: 'skills' },
-    { to: '/#contact', icon: <BiMessageSquareDetail />, section: 'contact' },
-  ];
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <nav>
-      {/* Main links (route to home with section hash) */}
-      {navLinks.map((link) => (
-        <Link
-          key={link.section}
-          to={link.to}
-          className={location.pathname === '/' && activeSection === link.section ? 'active' : ''}
-        >
-          {link.icon}
-        </Link>
-      ))}
-
-      {/* Problems dropdown */}
-      <div className="dropdown" ref={dropdownRef}>
-                <a
-          href="#!"
-          className={['/leetcode', '/codeforces'].includes(location.pathname) ? 'active' : ''}
-          onClick={(e) => {
-            e.preventDefault();
-            setDropdownOpen(!dropdownOpen);
-          }}
-        >
-          <AiOutlineCode />
+    <header
+      className={`modern-navbar ${isScrolled ? 'is-scrolled' : ''} ${
+        isInProjects ? 'is-hidden-on-projects' : ''
+      }`}
+    >
+      <div className="navbar-container">
+        {/* Brand Wordmark */}
+        <a href="#home" className="navbar-brand" aria-label="Kuldeep Jangid — Home">
+          <span className="brand-wordmark">KULDEEP</span>
         </a>
-        <div className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}>
-          {[ { to: '/leetcode', label: 'LeetCode' }, { to: '/codeforces', label: 'Codeforces' } ].map(item => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className={location.pathname === item.to ? 'active' : ''}
-              onClick={() => setDropdownOpen(false)}
+
+        {/* Desktop Nav Links */}
+        <nav className="navbar-links" aria-label="Main Navigation">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="nav-link-item"
             >
-              {item.label}
-            </Link>
+              {link.label}
+            </a>
           ))}
+        </nav>
+
+        {/* Right CTA */}
+        <div className="navbar-actions">
+          <a
+            href={resumePdf}
+            target="_blank"
+            rel="noreferrer"
+            className="navbar-resume-btn"
+            aria-label="Download Kuldeep's Verified Resume"
+          >
+            <FiFileText aria-hidden="true" />
+            <span>RESUME</span>
+            <FiArrowUpRight aria-hidden="true" />
+          </a>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            type="button"
+            className="mobile-toggle-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
+          </button>
         </div>
       </div>
-    </nav>
+
+      {/* Mobile Drawer */}
+      <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'is-open' : ''}`}>
+        <div className="mobile-drawer-links">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="mobile-nav-link"
+            >
+              <span>{link.label}</span>
+              <FiArrowUpRight aria-hidden="true" />
+            </a>
+          ))}
+
+          <a
+            href={resumePdf}
+            target="_blank"
+            rel="noreferrer"
+            className="mobile-nav-link mobile-resume-link"
+          >
+            <span>DOWNLOAD RESUME (PDF)</span>
+            <FiArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </header>
   );
 };
 

@@ -1,39 +1,77 @@
 /* ============================================================
-   OWNITT-INSPIRED DESIGN SYSTEM
-   Editorial - Dark - Cinematic - Typography-First
+   TIER-1 EDITORIAL ENGINEERING DESIGN SYSTEM
+   Linear / Vercel / Stripe Craft Standard
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap');
 
 /* ============================================================
-   CSS CUSTOM PROPERTIES
+   CSS CUSTOM PROPERTIES (DESIGN TOKENS)
    ============================================================ */
 :root {
-  /* Palette */
-  --c-cream:    #f0ede6;
-  --c-black:    #080808;
-  --c-offblack: #111111;
-  --c-dim:      #1a1a1a;
-  --c-border:   #2a2a2a;
-  --c-muted:    #555555;
-  --c-white:    #f5f5f0;
-  --c-accent:   #b8ff00;
+  /* Surfaces & Canvas — Pure Pitch Black (Vercel / OpenAI Craft Standard) */
+  --c-black:        #000000;
+  --c-bg:           #000000;
+  --c-surface-1:    #0a0a0a;
+  --c-surface-2:    #121212;
+  --c-surface-3:    #181818;
+  --c-elevated:     #141414;
 
-  /* Legacy compat */
-  --color-bg:         var(--c-black);
-  --color-bg-variant: var(--c-dim);
-  --color-text:       var(--c-white);
-  --color-text-alt:   var(--c-muted);
+  /* Hairlines & Precision Borders */
+  --border-subtle:  rgba(255, 255, 255, 0.1);
+  --border-medium:  rgba(255, 255, 255, 0.2);
+  --border-hover:   rgba(255, 255, 255, 0.4);
+  --border-accent:  rgba(255, 255, 255, 0.3);
+
+  /* Typography Colors */
+  --c-white:        #ffffff;
+  --c-text-1:       #ededed;
+  --c-text-2:       #a1a1a1;
+  --c-text-3:       #707070;
+  --c-text-muted:   #525252;
+
+  /* Pure Monochrome Discipline */
+  --c-accent:       #ffffff;
+  --c-accent-hover: #e5e5e5;
+  --c-accent-tint:  rgba(255, 255, 255, 0.08);
+  --c-accent-glow:  rgba(255, 255, 255, 0.12);
+  --c-accent-gradient: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+
+  /* Semantic Status Tokens */
+  --c-success:      #ffffff;
+  --c-success-tint: rgba(255, 255, 255, 0.08);
+
+  /* Legacy Compat */
+  --color-bg:         var(--c-bg);
+  --color-bg-variant: var(--c-surface-1);
+  --color-text:       var(--c-text-1);
+  --color-text-alt:   var(--c-text-2);
   --color-primary:    var(--c-accent);
-  --color-border:     var(--c-border);
+  --color-border:     var(--border-subtle);
 
-  /* Fonts */
-  --font-display: 'Syne', sans-serif;
-  --font-serif:   'Playfair Display', serif;
-  --font-body:    'DM Sans', sans-serif;
+  /* Typography Stack — Crisp High-End Sans & Mono */
+  --font-sans:    'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  --font-display: 'Plus Jakarta Sans', var(--font-sans);
+  --font-body:    'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Easing */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --transition: all 0.4s var(--ease-out-expo);
+  /* Spatial Grid & Measures */
+  --max-w-content: 1440px;
+  --radius-xs:     4px;
+  --radius-sm:     6px;
+  --radius-md:     10px;
+  --radius-lg:     16px;
+  --radius-pill:   9999px;
+  --radius-full:   9999px;
+
+  /* Shadows */
+  --shadow-sm:     0 2px 8px rgba(0, 0, 0, 0.6);
+  --shadow-md:     0 8px 24px -4px rgba(0, 0, 0, 0.8);
+  --shadow-lg:     0 16px 48px -8px rgba(0, 0, 0, 0.95);
+
+  /* Easing & Transitions */
+  --ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.15s ease;
+  --transition:    all 0.25s var(--ease-expo);
+  --transition-slow: all 0.45s var(--ease-expo);
 }
 
 /* ============================================================
@@ -84,11 +122,12 @@ em, i {
 /* ============================================================
    SELECTION & SCROLLBAR
    ============================================================ */
-::selection { background: var(--c-accent); color: var(--c-black); }
+::selection { background: rgba(255, 255, 255, 0.25); color: #ffffff; }
 
-::-webkit-scrollbar       { width: 3px; }
-::-webkit-scrollbar-track { background: var(--c-black); }
-::-webkit-scrollbar-thumb { background: var(--c-accent); border-radius: 2px; }
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #000000; }
+::-webkit-scrollbar-thumb { background: #333333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #555555; }
 
 /* ============================================================
    APP SHELL
@@ -107,18 +146,18 @@ em, i {
 }
 
 .App.app-portal-reveal {
-  animation: appSlowPortalReveal 1.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: appSlowPortalReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform, opacity, filter;
 }
 
 @keyframes appSlowPortalReveal {
   0% {
-    opacity: 0.15;
-    transform: scale(0.96) translateY(28px);
-    filter: blur(18px);
+    opacity: 0;
+    transform: scale(0.97) translateY(18px);
+    filter: blur(14px);
   }
-  45% {
-    opacity: 0.75;
+  50% {
+    opacity: 0.25;
     filter: blur(8px);
   }
   100% {
@@ -137,73 +176,145 @@ main { flex: 1; }
    CONTAINER
    ============================================================ */
 .container {
-  width: 88%;
-  max-width: 1200px;
+  width: 92%;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
 /* ============================================================
-   GLOBAL BUTTONS
+   GLOBAL BUTTONS & INTERACTIVE ELEMENTS
    ============================================================ */
 .btn {
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
   font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.55rem;
-  padding: 0.9rem 2.2rem;
-  border-radius: 999px;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-full);
   cursor: pointer;
-  border: 1px solid var(--c-border);
-  background: transparent;
+  border: 1px solid var(--border-subtle);
+  background: var(--c-surface-1);
+  color: var(--c-text-1);
   text-decoration: none;
   white-space: nowrap;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  outline: none;
 }
 
-/* Subtle shine on hover */
-.btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.06);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.btn:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 2px;
 }
-.btn:hover::before { opacity: 1; }
 
 .btn:hover {
-  background: var(--c-white);
-  color: var(--c-black);
-  border-color: var(--c-white);
+  background: var(--c-surface-2);
+  color: var(--c-white);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 .btn-primary {
-  background: var(--c-accent);
-  color: var(--c-black);
-  border-color: var(--c-accent);
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
   font-weight: 700;
 }
 .btn-primary:hover {
-  background: #d4ff4d;
-  border-color: #d4ff4d;
-  color: var(--c-black);
+  background: #e2e8f0;
+  border-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
 }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--c-white);
-  border-color: var(--c-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--c-text-1);
+  border-color: var(--border-subtle);
+  backdrop-filter: blur(8px);
 }
 .btn-secondary:hover {
-  background: var(--c-dim);
-  border-color: var(--c-muted);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-medium);
   color: var(--c-white);
+}
+
+.btn-sm {
+  padding: 0.45rem 1rem;
+  font-size: 0.75rem;
+  gap: 0.4rem;
+}
+
+/* ============================================================
+   BADGES, TAGS & MONOSPACE UTILITIES
+   ============================================================ */
+.tag-mono {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--c-text-2);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.tag-accent {
+  color: var(--c-accent);
+  border-color: var(--border-accent);
+  background: var(--c-accent-tint);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #ffffff;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  position: relative;
+}
+
+.status-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: statusPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(2.2); opacity: 0; }
 }
 
 /* ============================================================
@@ -229,8 +340,8 @@ main { flex: 1; }
    ============================================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+  transform: translateY(28px);
+  transition: opacity 0.65s var(--ease-out-expo), transform 0.65s var(--ease-out-expo);
 }
 .reveal.visible {
   opacity: 1;
@@ -238,8 +349,8 @@ main { flex: 1; }
 }
 .reveal-left {
   opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+  transform: translateX(-28px);
+  transition: opacity 0.65s var(--ease-out-expo), transform 0.65s var(--ease-out-expo);
 }
 .reveal-left.visible {
   opacity: 1;
@@ -249,6 +360,15 @@ main { flex: 1; }
 /* Stagger utility � add delay via --delay CSS var */
 .reveal[style], .reveal-left[style] {
   transition-delay: var(--delay, 0s);
+}
+
+/* Respect user motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ============================================================
@@ -261,3 +381,70 @@ main { flex: 1; }
   .container { width: 92%; }
   .btn { padding: 0.8rem 1.8rem; font-size: 0.78rem; }
 }
+
+/* ============================================================
+   OWNITT GLOBAL COMPONENT UTILITIES
+   ============================================================ */
+.ownitt-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 0.65rem 0.75rem 0.65rem 1.75rem;
+  background: var(--c-white);
+  color: #000000;
+  border-radius: 9999px;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ownitt-pill-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(255, 255, 255, 0.2);
+}
+
+.ownitt-arrow-disc {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.arrow-disc-icon {
+  font-size: 1rem;
+}
+
+.ownitt-pill-btn:hover .ownitt-arrow-disc {
+  transform: rotate(45deg);
+}
+
+@keyframes ownittPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.35;
+  }
+}
+
+@keyframes ownittSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

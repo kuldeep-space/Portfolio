@@ -1,0 +1,125 @@
+/* ============================================================
+   GLOBAL LUXURY MORPH CURSOR
+   Hides original OS cursor across entire website and activates
+   smooth velocity-following scroll-morph cursor.
+   ============================================================ */
+
+/* Hide default OS cursor globally on desktop/laptop */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  *,
+  *::before,
+  *::after,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: none !important;
+  }
+}
+
+.global-cursor-dot,
+.global-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.global-cursor-dot.is-visible,
+.global-cursor-ring.is-visible {
+  opacity: 1;
+}
+
+/* Center Precision Dot */
+.global-cursor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.25s ease,
+              background-color 0.25s ease;
+}
+
+/* Outer Fluid Ring */
+.global-cursor-ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1.2px solid rgba(255, 255, 255, 0.55);
+  background: transparent;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              background-color 0.3s ease,
+              transform 0.25s ease;
+}
+
+/* Hovering over any link, button, or interactive card */
+.global-cursor-ring.is-hovered {
+  width: 58px;
+  height: 58px;
+  border-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.global-cursor-dot.is-hovered {
+  background-color: #ffffff;
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+/* Click Active State */
+.global-cursor-ring.is-clicking {
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* Scroll Morph: Pill Shape with directional scroll dot */
+.global-cursor-ring.is-scrolling {
+  width: 22px;
+  height: 38px;
+  border-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.12);
+}
+
+.global-cursor-dot.is-scrolling {
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Scroll DOWN: Dot smoothly glides DOWN towards bottom inside the pill */
+.global-cursor-dot.is-scrolling-down {
+  transform: translate(-50%, calc(-50% + 11px)) scale(0.9, 1.2);
+}
+
+/* Scroll UP: Dot smoothly glides UP towards top inside the pill */
+.global-cursor-dot.is-scrolling-up {
+  transform: translate(-50%, calc(-50% - 11px)) scale(0.9, 1.2);
+}
+
+/* Disable on Touchscreens & Mobile Devices */
+@media (pointer: coarse), (hover: none) {
+  .global-cursor-dot,
+  .global-cursor-ring {
+    display: none !important;
+  }
+  html,
+  body,
+  *,
+  *::before,
+  *::after,
+  a,
+  button {
+    cursor: auto !important;
+  }
+}

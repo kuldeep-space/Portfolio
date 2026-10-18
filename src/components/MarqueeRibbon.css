@@ -1,0 +1,70 @@
+/* ============================================================
+   KINETIC MARQUEE RIBBON
+   Continuous cinematic text velocity
+   ============================================================ */
+
+.ownitt-marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(10, 10, 12, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.15rem 0;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.ownitt-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5rem;
+  will-change: transform;
+  animation: marqueeScroll linear infinite;
+}
+
+.ownitt-marquee-track.is-reverse {
+  animation-direction: reverse;
+}
+
+.ownitt-marquee-wrapper:hover .ownitt-marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.marquee-dot {
+  width: 4px;
+  height: 4px;
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.marquee-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.marquee-item:hover .marquee-text {
+  color: #38bdf8;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

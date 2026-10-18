@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
-import InitialLoader from './components/InitialLoader';
 import NavigationBar from './components/NavigationBar';
 import HeroAdvanced from './components/HeroAdvanced';
 import AboutSection from './components/AboutSection';
@@ -10,9 +9,8 @@ import Projects from './components/Projects';
 import SkillsSection from './components/SkillsSection';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import LeetCodeExplorer from './components/pages/LeetCodeExplorer';
-import CodeForces from './components/pages/CodeForces';
-import ProjectPage from './components/pages/ProjectPage';
+import CustomCursor from './components/CustomCursor';
+import InitialLoader from './components/InitialLoader';
 
 const MainLayout = () => (
   <>
@@ -48,7 +46,7 @@ const ScrollToSection = () => {
   return null;
 };
 
-// Global scroll reveal observer for cinematic animations
+// Global scroll reveal observer for refined element animations
 const ScrollRevealWatcher = () => {
   const location = useLocation();
   useEffect(() => {
@@ -64,7 +62,7 @@ const ScrollRevealWatcher = () => {
             }
           });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.06, rootMargin: '0px 0px -20px 0px' }
       );
 
       elements.forEach((el) => observer.observe(el));
@@ -79,42 +77,27 @@ const ScrollRevealWatcher = () => {
 
 function App() {
   const [showIntro, setShowIntro] = React.useState(true);
-  const [introExiting, setIntroExiting] = React.useState(false);
 
   useEffect(() => {
-    const handleReplay = () => {
-      setIntroExiting(false);
-      setShowIntro(true);
-    };
+    const handleReplay = () => setShowIntro(true);
     window.addEventListener('replayIntro', handleReplay);
     return () => window.removeEventListener('replayIntro', handleReplay);
   }, []);
 
   return (
     <div className="App-container">
-      {/* Intro Vector Canvas Landing Page with Precision Path2D Liquid Fill */}
-      {showIntro && (
-        <InitialLoader
-          onExitStart={() => setIntroExiting(true)}
-          onComplete={() => {
-            setShowIntro(false);
-            setIntroExiting(false);
-          }}
-        />
-      )}
-
+      <CustomCursor />
+      {showIntro && <InitialLoader onComplete={() => setShowIntro(false)} />}
       <Analytics />
       <Router>
-        <div className={`App ${introExiting ? "app-portal-reveal" : ""}`}>
+        <div className="App">
           <NavigationBar />
           <ScrollToSection />
           <ScrollRevealWatcher />
-          <main>
+          <main id="main-content">
             <Routes>
               <Route path="/" element={<MainLayout />} />
-              <Route path="/leetcode" element={<LeetCodeExplorer />} />
-              <Route path="/codeforces" element={<CodeForces />} />
-              <Route path="/project/:id" element={<ProjectPage />} />
+              <Route path="*" element={<MainLayout />} />
             </Routes>
           </main>
           <Footer />

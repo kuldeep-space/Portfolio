@@ -1,139 +1,212 @@
-/* ==================== OWNITT-STYLE NAVIGATION ==================== */
-nav {
+/* ============================================================
+   TIER-1 MINIMALIST TOP HEADER
+   Pure Monochrome / Vercel & OpenAI Engineering Standard
+   ============================================================ */
+
+.modern-navbar {
   position: fixed;
-  top: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  background: rgba(8, 8, 8, 0.7);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  padding: 0.4rem 0.6rem;
-}
-
-nav a, nav a:visited {
-  position: relative;
-  background: transparent;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: rgba(245, 245, 240, 0.5);
-  font-size: 1.05rem;
-  transition: color 0.3s ease, background 0.3s ease;
-  border: none;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
 }
 
-nav a:hover {
-  color: #f5f5f0;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-nav a.active {
-  color: #080808;
-  background: #b8ff00;
-}
-
-nav a.active:hover {
-  background: #b8ff00;
-  color: #080808;
-}
-
-nav a svg {
-  width: 15px;
-  height: 15px;
-}
-
-/* ==================== DROPDOWN ==================== */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown > a {
-  position: relative;
-  background: transparent;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(245, 245, 240, 0.5);
-  font-size: 1.05rem;
-  transition: color 0.3s ease, background 0.3s ease;
-  cursor: pointer;
-}
-
-.dropdown > a:hover {
-  color: #f5f5f0;
-  background: rgba(255,255,255,0.06);
-}
-
-.dropdown > a.active {
-  color: #080808;
-  background: #b8ff00;
-}
-
-.dropdown-content {
-  position: absolute;
-  background: #111111;
-  min-width: 150px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-  z-index: 200;
-  border-radius: 12px;
-  padding: 0.4rem;
-  bottom: calc(100% + 0.6rem);
-  right: 0;
-  transform: translateY(8px);
+.modern-navbar.is-hidden-on-projects {
+  transform: translateY(-100%);
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-  border: 1px solid rgba(255,255,255,0.08);
+  pointer-events: none;
 }
 
-.dropdown-content.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+.modern-navbar.is-scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-.dropdown-content a {
-  color: rgba(245,245,240,0.7);
-  padding: 0.6rem 1rem;
-  display: block;
-  text-align: left;
-  background: transparent;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-family: 'DM Sans', sans-serif;
-  letter-spacing: 0.05em;
+.navbar-container {
+  width: 92%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Wordmark */
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+}
+
+.brand-wordmark {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
   text-transform: uppercase;
-  transition: background 0.2s ease, color 0.2s ease;
-  border: none;
 }
 
-.dropdown-content a:hover {
-  background: rgba(184, 255, 0, 0.1);
-  color: #b8ff00;
+.brand-dot {
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.6;
 }
 
-.dropdown-content a.active {
-  background: rgba(184, 255, 0, 0.15);
-  color: #b8ff00;
+/* Desktop Links */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
 }
 
-/* ==================== MOBILE ==================== */
-@media screen and (max-width: 600px) {
-  nav {
-    gap: 0;
-    padding: 0.3rem 0.4rem;
+.nav-link-item {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #888888;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.nav-link-item:hover {
+  color: #ffffff;
+}
+
+.nav-link-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: #ffffff;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.nav-link-item:hover::after {
+  transform: scaleX(1);
+}
+
+/* Right Actions */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  padding: 0.45rem 1.15rem;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.navbar-resume-btn:hover {
+  background: #000000;
+  border-color: #ffffff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.mobile-toggle-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffffff;
+  padding: 0.5rem;
+  font-size: 1.15rem;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.mobile-toggle-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav-drawer {
+  display: none;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+@media screen and (max-width: 768px) {
+  .navbar-links {
+    display: none;
   }
-  nav a { padding: 0.4rem 0.7rem; font-size: 0.95rem; }
-  .dropdown-content { min-width: 130px; right: -10px; }
+  .mobile-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-nav-drawer {
+    display: block;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: #000000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .mobile-nav-drawer.is-open {
+    max-height: 380px;
+  }
+  .mobile-drawer-links {
+    padding: 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    text-decoration: none;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .mobile-resume-link {
+    color: #ffffff;
+    font-weight: 700;
+    border-bottom: none;
+    padding-top: 0.5rem;
+  }
 }
