@@ -15,7 +15,7 @@ const slides = [
     client: 'EDUSHIELD AI',
     tags: 'PREDICTIVE MODELING · STUDENT ANALYTICS · ML PIPELINES',
     headerRight: 'APPLIED AI & MACHINE LEARNING',
-    titleLines: ['EduShield AI —', 'Student Dropout', 'Analytics'],
+    titleLines: ['EduShield AI —', 'Student Dropout Analytics'],
     desc: 'Intelligent predictive analytics platform calculating student dropout risk trajectories in real time. Features multi-metric classification pipelines, interactive risk dashboards, and high-availability edge inference.',
     bg: '#000000',
     accent: '#ffffff',
@@ -38,7 +38,7 @@ const slides = [
     client: 'OPENCV VISION',
     tags: 'BIOMETRIC TRACKING · SUB-100MS INFERENCE · AUTOMATED LEDGERS',
     headerRight: 'COMPUTER VISION & EMBEDDED SYSTEMS',
-    titleLines: ['Automated Face', 'Detection Attendance', 'System'],
+    titleLines: ['Automated Face Detection', 'Attendance System'],
     desc: 'High-frequency biometric attendance platform using computer vision for real-time facial contour tracking and automated identity verification with sub-100ms inference, writing directly to structured ledgers.',
     bg: '#000000',
     accent: '#ffffff',
@@ -61,7 +61,7 @@ const slides = [
     client: 'TESTEDGE PLATFORM',
     tags: 'DYNAMIC AUTO-GRADING · REALTIME CANDIDATE ASSESSMENT · STATE MACHINE',
     headerRight: 'FULL STACK & REALTIME DATABASE',
-    titleLines: ['TestEdge —', 'Candidate Assessment', 'Platform'],
+    titleLines: ['TestEdge — Candidate', 'Assessment Platform'],
     desc: 'Synchronized examination clock and candidate evaluation system resilient against tab reloads, featuring dynamic multi-parameter auto-grading calculation engines and administrative analytics consoles.',
     bg: '#000000',
     accent: '#ffffff',
@@ -84,7 +84,7 @@ const slides = [
     client: 'TEXTIFY UTILITY',
     tags: 'ZERO-DEPENDENCY RUNTIME · REAL-TIME DOCUMENT METRICS · REACT 18',
     headerRight: 'CLIENT-SIDE WEB UTILITY',
-    titleLines: ['Textify — High', 'Throughput Text', 'Transformation'],
+    titleLines: ['Textify — High-Throughput', 'Text Transformation'],
     desc: 'High-throughput client-side text transformation and document analytics suite engineered with zero external dependencies, offering real-time word, character, and line metrics with 1-click clipboard buffers.',
     bg: '#000000',
     accent: '#ffffff',
@@ -705,12 +705,20 @@ const Projects = () => {
             </div>
           </header>
 
-          {/* Main 3-Column Stage */}
+          {/* Main Stage */}
           <main className="ownitt-main-stage">
-            {/* Left Column: Overlapping Split-Line Typography */}
+            {/* Project Showcase & Information */}
             <div className="project-info">
               <div className="stack-grid meta-stack" ref={metaStackRef} />
               <div className="stack-grid title-stack" ref={titleStackRef} />
+
+              {/* Center Column (Desktop) / Below Heading (Mobile): Morphing Frame */}
+              <div className="media-stage">
+                <div className="media-wrapper">
+                  <div className="media-frame" ref={mediaFrameRef} />
+                </div>
+              </div>
+
               <div className="stack-grid desc-stack" ref={descStackRef} />
 
               {/* Action Cluster: Circular Arrow Disc CTA + Source + Tech Specs */}
@@ -763,13 +771,6 @@ const Projects = () => {
                   <FiLayers aria-hidden="true" />
                   <span>TECH SPECS</span>
                 </button>
-              </div>
-            </div>
-
-            {/* Center Column: Morphing Frame */}
-            <div className="media-stage">
-              <div className="media-wrapper">
-                <div className="media-frame" ref={mediaFrameRef} />
               </div>
             </div>
 

@@ -363,8 +363,10 @@
   .contact-section {
     padding: 4.5rem 0 3.5rem;
   }
-  .contact-title {
-    font-size: clamp(1.9rem, 7.5vw, 2.8rem);
+  .contact-section-title {
+    font-size: clamp(1.65rem, 6.2vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
   .channel-toggles {
     grid-template-columns: 1fr;

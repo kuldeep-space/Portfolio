@@ -110,12 +110,12 @@ function App() {
       window.addEventListener('wheel', preventMomentum, { passive: false });
       window.addEventListener('touchmove', preventMomentum, { passive: false });
 
-      // Hold on Hero for 3 seconds, then unlock smooth scrolling
+      // Hold on Hero for 1.5 seconds, then unlock smooth scrolling
       const unlockTimer = setTimeout(() => {
         setHeroLocked(false);
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
-      }, 3000);
+      }, 1500);
 
       // Allow immediate unlock if user deliberately clicks an action button or nav link
       const handleExplicitClick = (e) => {

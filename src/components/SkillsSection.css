@@ -310,8 +310,10 @@
     gap: 36px;
   }
 
-  .skills-section-heading {
-    font-size: clamp(1.9rem, 7vw, 2.8rem);
+  .skills-section-title {
+    font-size: clamp(1.65rem, 6.2vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
 
   .skills-radar-summary {
