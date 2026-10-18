@@ -57,7 +57,7 @@ const Contact = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     handleDispatch(activeChannel);
   };
 
@@ -185,7 +185,7 @@ const Contact = () => {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="contact-dispatch-form" noValidate>
+            <div className="contact-dispatch-form" role="region" aria-label="Direct message dispatch">
               {errorMsg && (
                 <div className="contact-alert error" role="alert">
                   {errorMsg}
@@ -207,7 +207,7 @@ const Contact = () => {
                   id="contact-name"
                   type="text"
                   name="name"
-                  placeholder="e.g. Alex Rivera"
+                  placeholder="Your name or organization..."
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -223,7 +223,7 @@ const Contact = () => {
                   id="contact-info"
                   type="text"
                   name="contactInfo"
-                  placeholder="e.g. alex@company.com"
+                  placeholder="email@example.com or phone number..."
                   value={formData.contactInfo}
                   onChange={handleChange}
                   required
@@ -239,7 +239,7 @@ const Contact = () => {
                   id="contact-msg"
                   name="message"
                   rows={5}
-                  placeholder="Outline your opportunity, collaboration, or question..."
+                  placeholder="Hi Kuldeep, I would like to discuss an opportunity, project, or collaboration..."
                   value={formData.message}
                   onChange={handleChange}
                   required
@@ -247,11 +247,15 @@ const Contact = () => {
                 />
               </div>
 
-              <button type="submit" className="contact-submit-btn">
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="contact-submit-btn"
+              >
                 <span>SEND MESSAGE VIA {activeChannel.toUpperCase()}</span>
                 <FiSend aria-hidden="true" />
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>

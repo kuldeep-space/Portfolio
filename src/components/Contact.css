@@ -285,6 +285,15 @@
   resize: vertical;
 }
 
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+  color: #666666;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+  opacity: 1;
+}
+
 .contact-submit-btn {
   display: inline-flex;
   align-items: center;
