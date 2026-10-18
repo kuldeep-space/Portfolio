@@ -211,8 +211,7 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
     };
   }, [compiledGlyphs]);
 
-  // Transition into portfolio with SLOW-MOTION cinematic blur & scale
-  // Transition into portfolio with smooth cinematic blur & scale
+  // Transition into portfolio with cinematic motion blur & warp
   const triggerEnter = useCallback(() => {
     if (isExiting || isDone) return;
     setIsExiting(true);
@@ -222,10 +221,15 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
 
+    // Guarantee landing at the very top of Hero section
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.getElementById('home')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+
     setTimeout(() => {
       setIsDone(true);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       if (onComplete) onComplete();
-    }, 550);
+    }, 1100);
   }, [isExiting, isDone, onExitStart, onComplete]);
 
   // Lock body scroll strictly during active intro presentation

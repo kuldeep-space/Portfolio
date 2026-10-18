@@ -77,9 +77,13 @@ const ScrollRevealWatcher = () => {
 
 function App() {
   const [showIntro, setShowIntro] = React.useState(true);
+  const [introExiting, setIntroExiting] = React.useState(false);
 
   useEffect(() => {
-    const handleReplay = () => setShowIntro(true);
+    const handleReplay = () => {
+      setIntroExiting(false);
+      setShowIntro(true);
+    };
     window.addEventListener('replayIntro', handleReplay);
     return () => window.removeEventListener('replayIntro', handleReplay);
   }, []);
@@ -87,10 +91,22 @@ function App() {
   return (
     <div className="App-container">
       <CustomCursor />
-      {showIntro && <InitialLoader onComplete={() => setShowIntro(false)} />}
+      {showIntro && (
+        <InitialLoader
+          onExitStart={() => {
+            setIntroExiting(true);
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          }}
+          onComplete={() => {
+            setShowIntro(false);
+            setIntroExiting(false);
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          }}
+        />
+      )}
       <Analytics />
       <Router>
-        <div className="App">
+        <div className={`App ${introExiting ? "app-portal-reveal" : ""}`}>
           <NavigationBar />
           <ScrollToSection />
           <ScrollRevealWatcher />
