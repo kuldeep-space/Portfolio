@@ -29,7 +29,7 @@
   background-image: url('../assets/kuldeep_suit.png');
   background-repeat: no-repeat;
   background-position: right bottom;
-  background-size: auto 96%;
+  background-size: auto 100%;
   pointer-events: none;
   z-index: 0;
   transition: opacity 0.3s ease;
