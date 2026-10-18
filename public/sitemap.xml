@@ -3,29 +3,71 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+   <!-- Primary Portfolio Homepage -->
    <url>
-      <loc>https://kuldeep.space/</loc>
-      <lastmod>2025-10-04</lastmod>
+      <loc>https://kuldeep-codes.me/</loc>
+      <lastmod>2026-10-18</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
    </url>
 
+   <!-- Core Content Sections -->
    <url>
-      <loc>https://kuldeep.space/project/1</loc>
-      <lastmod>2025-10-04</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
+      <loc>https://kuldeep-codes.me/#about</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
    </url>
+
    <url>
-      <loc>https://kuldeep.space/project/2</loc>
-      <lastmod>2025-10-04</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
+      <loc>https://kuldeep-codes.me/#projects</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
    </url>
+
    <url>
-      <loc>https://kuldeep.space/project/3</loc>
-      <lastmod>2025-10-04</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
+      <loc>https://kuldeep-codes.me/#skills</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
    </url>
+
+   <url>
+      <loc>https://kuldeep-codes.me/#contact</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <!-- Featured Engineering Projects -->
+   <url>
+      <loc>https://kuldeep-codes.me/projects/edushield-ai</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.85</priority>
+   </url>
+
+   <url>
+      <loc>https://kuldeep-codes.me/projects/face-attendance-system</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.85</priority>
+   </url>
+
+   <url>
+      <loc>https://kuldeep-codes.me/projects/testedge</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.85</priority>
+   </url>
+
+   <url>
+      <loc>https://kuldeep-codes.me/projects/textify</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.85</priority>
+   </url>
+
 </urlset>

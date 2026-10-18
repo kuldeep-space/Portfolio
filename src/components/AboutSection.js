@@ -76,7 +76,7 @@ const educationData = [
     period: '2024 — MAY 2028',
     badge: 'EXPECTED GRADUATION',
     degree: 'B.Tech in Computer Science and Engineering',
-    institution: 'Jaipur Engineering College, Rajasthan',
+    institution: 'Jaipur Engineering College (JEC), Kukas, Jaipur',
     description:
       'Rigorous curriculum focused on Applied AI/ML, Computer Vision, Data Structures & Algorithms, and high-performance software architecture. Core coursework includes OOP, Database Management (SQL), Operating Systems, and Distributed Computing.',
     coursework: ['Applied AI / ML', 'Computer Vision', 'Data Structures & Algorithms', 'OOP', 'SQL & DBMS', 'Operating Systems'],
@@ -89,6 +89,15 @@ const educationData = [
     description:
       'Rigorous STEM foundation centered on Computer Science, Advanced Mathematics, and Physics with focus on analytical reasoning and computational logic.',
     coursework: ['Computer Science', 'Mathematics', 'Physics', 'Computational Logic'],
+  },
+  {
+    period: '2022',
+    badge: 'COMPLETED',
+    degree: 'Secondary Schooling (CBSE Class X)',
+    institution: 'The Sanctum School, Kunda, Amer, Jaipur',
+    description:
+      'Foundational secondary education with academic distinction, developing early expertise in Computer Applications, Mathematics, Science, and logical problem-solving.',
+    coursework: ['Computer Applications', 'Mathematics', 'Science', 'Logical Reasoning'],
   },
 ];
 

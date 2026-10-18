@@ -1,7 +1,7 @@
 {
-  "short_name": "Kuldeep's Portfolio",
-  "name": "Kuldeep Jangid - Official Portfolio",
-  "description": "Portfolio of Kuldeep Jangid - B.Tech CSE Student & Developer",
+  "short_name": "Kuldeep Jangid",
+  "name": "Kuldeep Jangid (kuldeep-codes) — Portfolio",
+  "description": "Official Portfolio of Kuldeep Jangid — AI/ML & Python Developer, Computer Vision Specialist",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -31,5 +31,5 @@
   "orientation": "portrait",
   "scope": "/",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#000000"
 }
