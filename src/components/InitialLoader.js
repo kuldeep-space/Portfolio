@@ -217,10 +217,6 @@ const InitialLoader = ({ onComplete, onExitStart }) => {
     setIsExiting(true);
     if (onExitStart) onExitStart();
 
-    // Immediately restore page scroll so Hero section never gets stuck
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = "";
-
     // Guarantee landing at the very top of Hero section
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.getElementById('home')?.scrollIntoView({ behavior: 'instant', block: 'start' });
